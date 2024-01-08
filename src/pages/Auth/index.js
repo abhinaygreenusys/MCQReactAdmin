@@ -27,7 +27,7 @@ const Auth = () => {
       navigate("/");
     } catch (error) {
       console.log(error);
-      myToast(error?.response?.data?.message, "failure");
+      myToast(error?.response?.data?.error, "failure");
     }
   };
 

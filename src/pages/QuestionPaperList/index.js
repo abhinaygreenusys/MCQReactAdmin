@@ -19,7 +19,7 @@ const QuestionPaperList = () => {
     } catch (err) {
       console.log(err);
       myToast(
-        err?.response?.data?.message || "Something went wrong",
+        err?.response?.data?.error || "Something went wrong",
         "failure"
       );
     }
