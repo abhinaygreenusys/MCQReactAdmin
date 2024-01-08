@@ -14,7 +14,7 @@ const Dashboard = () => {
       setDashboardData(data);
     } catch (err) {
       console.log(err);
-      myToast(err?.response?.data?.message || "Something went wrong", "error");
+      myToast(err?.response?.data?.message || "Something went wrong", "failure");
     }
     setLoading(false);
   };
