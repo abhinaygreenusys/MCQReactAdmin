@@ -16,12 +16,12 @@
 .btn.btn-blue3:hover {
   background-color: var(--blue4);
 }
-.btn.btn-pink {
-  background-color: var(--pink);
+.btn.btn-red {
+  background-color: var(--red);
   color: var(--white);
 }
-.btn.btn-pink:hover {
-  background-color: var(--pink2);
+.btn.btn-red:hover {
+  background-color: var(--red2);
 }
 .btn[disabled] {
   background-color: var(--lightgrey3);
