@@ -16,7 +16,10 @@ const Auth = () => {
 
   const login = async () => {
     try {
-      const { data } = await axios.post("/admin/login", { email, password });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BASE_API_URL}/login`,
+        { email, password }
+      );
       console.log(data);
       setLoggedUser(data.token);
       localStorage.setItem("mcq-token", data.token);
@@ -38,6 +41,7 @@ const Auth = () => {
             login();
           }}
           className="w-full"
+          autoComplete
         >
           <div className="mb-4">
             <h5 className="mb-1">Email</h5>
