@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
@@ -6,6 +7,8 @@ import Table from "../../components/common/Table";
 import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
 
 const QuestionList = () => {
+  const navigate = useNavigate();
+  
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
   const getQuestions = async () => {
@@ -45,7 +48,9 @@ const QuestionList = () => {
     <div>
       <div className="flex justify-between items-center mb-8">
         <h2>All Questions</h2>
-        <Button>Add Question</Button>
+        <Link to="/add-question">
+          <Button>Add Question</Button>
+        </Link>
       </div>
       <div>
         <Table
@@ -84,7 +89,10 @@ const QuestionList = () => {
               </td>
               <td>
                 <div className="flex gap-x-2">
-                  <span className="cursor-pointer p-4">
+                  <span
+                    className="cursor-pointer p-4"
+                    onClick={() => navigate(`/update-question/${item._id}`)}
+                  >
                     <RiEdit2Line />
                   </span>
                   <span
