@@ -2,16 +2,20 @@ import { useState, useEffect } from "react";
 import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Table from "../../components/common/Table";
+import Pagination from "../../components/common/Pagination";
 
 const UserList = () => {
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
+  const [page, setPage] = useState(1);
   const getUsers = async () => {
     setLoading(true);
     try {
-      const { data } = await api.get("/getUsers");
+      const { data } = await api.get(`/getUsers?page=${page}`);
       console.log(data);
       setUsers(data.users);
+      setTotalPages(data.totalPages);
     } catch (err) {
       console.log(err);
       myToast(
@@ -43,6 +47,7 @@ const UserList = () => {
             </tr>
           ))}
         </Table>
+        <Pagination lastPage={totalPages} page={page} setPage={setPage} />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
 import Table from "../../components/common/Table";
+import Pagination from "../../components/common/Pagination";
 
 const AddQuestionPaper = () => {
   const [time, setTime] = useState("00:00");
@@ -31,12 +32,15 @@ const AddQuestionPaper = () => {
 
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const getQuestions = async () => {
     setLoading(true);
     try {
-      const { data } = await api.get("/getQuestions");
+      const { data } = await api.get(`/getQuestions?page=${page}`);
       console.log(data);
       setQuestions(data.result);
+      setTotalPages(data.totalPages);
     } catch (err) {
       console.log(err);
       myToast(
@@ -112,6 +116,7 @@ const AddQuestionPaper = () => {
                 </tr>
               ))}
             </Table>
+            <Pagination lastPage={totalPages} page={page} setPage={setPage} />
           </div>
           <div>
             <Button type="submit">Add Question Paper</Button>
