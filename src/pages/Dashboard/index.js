@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
+import Card from "../../components/common/Card";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -14,7 +15,10 @@ const Dashboard = () => {
       setDashboardData(data);
     } catch (err) {
       console.log(err);
-      myToast(err?.response?.data?.message || "Something went wrong", "failure");
+      myToast(
+        err?.response?.data?.message || "Something went wrong",
+        "failure"
+      );
     }
     setLoading(false);
   };
@@ -28,12 +32,12 @@ const Dashboard = () => {
         {loading ? (
           <div>Loading...</div>
         ) : (
-          <div>
+          <div className="flex gap-x-8 gap-y-4 flex-wrap">
             {Object.keys(dashboardData).map((key, value) => (
-              <div key={key} className="my-4">
-                <h5 className="capitalize">{key}</h5>
-                <p>{value}</p>
-              </div>
+              <Card key={key} className="bg-white w-48">
+                <h5 className="capitalize mb-2">{key}</h5>
+                <h3 className="text-center">{value}</h3>
+              </Card>
             ))}
           </div>
         )}
