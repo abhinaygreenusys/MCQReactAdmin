@@ -1,0 +1,23 @@
+table thead {
+  background-color: var(--black);
+  color: var(--white);
+}
+table thead th {
+  font-weight: 400;
+  text-align: left;
+  padding: 0.75rem 1.5rem;
+}
+table thead th:first-of-type {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+table thead th:last-of-type {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+table tbody td {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  background: var(--white);
+}
+table tbody tr:not(:last-of-type) {
+  border-bottom: 1px solid var(--lightgrey3);
+}
