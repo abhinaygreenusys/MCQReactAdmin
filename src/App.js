@@ -17,6 +17,7 @@ import "react-simple-toasts/dist/theme/success.css";
 import "react-simple-toasts/dist/theme/failure.css";
 import PassContext from "./components/utils/PassContext";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
+import ViewQuestions from "./pages/ViewQuestions";
 
 const routes = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const routes = createBrowserRouter([
           {
             path: "/question-paper-list",
             element: <QuestionPaperList />,
+          },
+          {
+            path: "/question-paper-list/:id",
+            element: <ViewQuestions />,
           },
           {
             path: "/user-list",

@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
 import Table from "../../components/common/Table";
 
 const QuestionPaperList = () => {
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
   const [questionPapers, setQuestionPapers] = useState([]);
   const getQuestions = async () => {
@@ -46,7 +48,14 @@ const QuestionPaperList = () => {
               <td>{item.difficulty}</td>
               <td>{item.attempts}</td>
               <td>{item.status}</td>
-              <td className="text-blue2 underline cursor-pointer">
+              <td
+                className="text-blue2 underline cursor-pointer"
+                onClick={() => {
+                  navigate(`/question-paper-list/${item._id}`, {
+                    state: { questions: item.questions },
+                  });
+                }}
+              >
                 View Questions
               </td>
             </tr>
