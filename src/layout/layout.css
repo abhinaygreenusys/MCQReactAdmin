@@ -12,6 +12,7 @@
   bottom: 0;
   width: 15rem;
   height: 100vh;
+  padding: 1rem 0;
 }
 .sidebar .sidebar-item {
   display: flex;
@@ -31,7 +32,7 @@
 
 
 .page-layout {
-  margin: 2rem;
+  margin: 4rem 2rem;
   margin-left: 17rem;
   min-height: calc(100vh - 8rem);
   transition: all 0.2s ease-in-out;
