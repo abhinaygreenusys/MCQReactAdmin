@@ -29,13 +29,14 @@ const UserList = () => {
       <h2 className="mb-8">All Question Papers</h2>
       <div>
         <Table
-          tHead={["S.No.", "Name", "Email", "Status", "Tests"]}
+          tHead={["S.No.", "Name", "ID", "Email", "Status", "Tests"]}
           loading={loading}
         >
           {users.map((item, index) => (
             <tr key={item._id}>
               <td>{index + 1}</td>
               <td>{item.name}</td>
+              <td>{item.employeeId}</td>
               <td>{item.email}</td>
               <td>{item.isVerified ? "Verified" : "Not Verified"}</td>
               <td></td>
