@@ -23,6 +23,7 @@ const updateToken = async () => {
   // } catch (e) {
   //   console.log(e);
     localStorage.removeItem("mcq-token");
+    window.location.href = "/auth/login";
     // localStorage.removeItem("JordanTokenRefresh");
   // }
 };
