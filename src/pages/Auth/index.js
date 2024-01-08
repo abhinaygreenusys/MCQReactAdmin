@@ -1,9 +1,75 @@
-import React from 'react'
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Card from "../../components/common/Card";
+import Button from "../../components/common/Button";
+import myToast from "../../components/utils/myToast";
+import PassContext from "../../components/utils/PassContext";
+import "./auth.scss";
 
 const Auth = () => {
-  return (
-    <div>Auth</div>
-  )
-}
+  const navigate = useNavigate();
+  const { setLoggedUser } = useContext(PassContext);
 
-export default Auth
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const login = async () => {
+    try {
+      const { data } = await axios.post("/admin/login", { email, password });
+      console.log(data);
+      setLoggedUser(data.token);
+      localStorage.setItem("mcq-token", data.token);
+      myToast("Logged in successfully", "success");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      myToast(error?.response?.data?.message, "failure");
+    }
+  };
+
+  return (
+    <div className="h-screen w-screen flex justify-center items-center">
+      <Card size="lg" className="w-[28rem]">
+        <h3 className="mb-8">Login</h3>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            login();
+          }}
+          className="w-full"
+        >
+          <div className="mb-4">
+            <h5 className="mb-1">Email</h5>
+            <input
+              className="w-full"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <h5 className="mb-1">Password</h5>
+            <input
+              className="w-full"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <Button rounded="none" className="w-full font-medium" type="submit">
+              Log In
+            </Button>
+          </div>
+        </form>
+      </Card>
+    </div>
+  );
+};
+
+export default Auth;

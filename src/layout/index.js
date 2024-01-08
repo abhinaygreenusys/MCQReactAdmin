@@ -1,10 +1,15 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import "./layout.css";
 
 const Layout = () => {
   return (
     <div>
-      <Outlet />
+      <Sidebar />
+      <div className="page-layout">
+        <Outlet />
+      </div>
     </div>
   );
 };

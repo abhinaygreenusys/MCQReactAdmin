@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import "./App.css";
 
 import Auth from "./pages/Auth";
@@ -11,6 +13,11 @@ import UpdateQuestion from "./pages/UpdateQuestion";
 import AddQuestionPaper from "./pages/AddQuestionPaper";
 import Layout from "./layout";
 
+import "react-simple-toasts/dist/theme/success.css";
+import "react-simple-toasts/dist/theme/failure.css";
+import PassContext from "./components/utils/PassContext";
+import ProtectedRoute from "./components/utils/ProtectedRoute";
+
 const routes = createBrowserRouter([
   {
     path: "/auth/login",
@@ -18,42 +25,72 @@ const routes = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Layout />,
+    element: <ProtectedRoute />,
     children: [
       {
         path: "/",
-        element: <Dashboard />,
-      },
-      {
-        path: "/question-list",
-        element: <QuestionList />,
-      },
-      {
-        path: "/question-paper-list",
-        element: <QuestionPaperList />,
-      },
-      {
-        path: "/user-list",
-        element: <UserList />,
-      },
-      {
-        path: "/add-question",
-        element: <AddQuestion />,
-      },
-      {
-        path: "/update-question/:id",
-        element: <UpdateQuestion />,
-      },
-      {
-        path: "/add-question-paper",
-        element: <AddQuestionPaper />,
+        element: <Layout />,
+        children: [
+          {
+            path: "/",
+            element: <Dashboard />,
+          },
+          {
+            path: "/question-list",
+            element: <QuestionList />,
+          },
+          {
+            path: "/question-paper-list",
+            element: <QuestionPaperList />,
+          },
+          {
+            path: "/user-list",
+            element: <UserList />,
+          },
+          {
+            path: "/add-question",
+            element: <AddQuestion />,
+          },
+          {
+            path: "/update-question/:id",
+            element: <UpdateQuestion />,
+          },
+          {
+            path: "/add-question-paper",
+            element: <AddQuestionPaper />,
+          },
+        ],
       },
     ],
   },
 ]);
 
 function App() {
-  return <RouterProvider router={routes} />;
+  const [loggedUser, setLoggedUser] = useState("");
+  const [loading, setLoading] = useState(true);
+  const handleReturningUser = () => {
+    const token = localStorage.getItem("mcq-token");
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      if (decodedToken.exp * 1000 < Date.now()) {
+        localStorage.removeItem("mcq-token");
+        setLoggedUser("");
+      } else {
+        setLoggedUser(token);
+      }
+    }
+    setLoading(false);
+  };
+  useEffect(() => {
+    handleReturningUser();
+  }, []);
+
+  if (loading) return null;
+  return (
+    <PassContext.Provider value={{ loggedUser, setLoggedUser }}>
+      <RouterProvider router={routes} />
+    </PassContext.Provider>
+  );
 }
 
 export default App;

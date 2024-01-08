@@ -1,0 +1,38 @@
+.sidebar {
+  background: var(--black);
+  color: var(--white);
+  box-shadow: 3px 0px 6px 0px rgba(176, 176, 176, 0.1),
+    11px 0px 11px 0px rgba(176, 176, 176, 0.09),
+    24px 0px 15px 0px rgba(176, 176, 176, 0.05),
+    43px 0px 17px 0px rgba(176, 176, 176, 0.01),
+    68px 0px 19px 0px rgba(176, 176, 176, 0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 15rem;
+  height: 100vh;
+}
+.sidebar .sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem 0;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+.sidebar .sidebar-item.active {
+  background: var(--blue);
+}
+.sidebar .sidebar-item:not(.active):hover {
+  background: var(--grey);
+}
+
+
+.page-layout {
+  margin: 2rem;
+  margin-left: 17rem;
+  min-height: calc(100vh - 8rem);
+  transition: all 0.2s ease-in-out;
+}
