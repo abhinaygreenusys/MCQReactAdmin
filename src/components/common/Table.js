@@ -4,7 +4,7 @@ import "./table.css";
 const Table = ({
   tHead = [],
   wrapperClass = "",
-  loading = "false",
+  loading = false,
   children,
 }) => {
   return (
