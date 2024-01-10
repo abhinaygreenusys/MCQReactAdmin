@@ -3,46 +3,60 @@
 .btn {
   text-align: center;
   transition: 0.3s all ease-in-out;
-}
-.btn.btn-blue {
-  background-color: colors.$blue;
-  color: colors.$white;
-}
-.btn.btn-blue:hover {
-  background-color: colors.$blue2;
-}
-.btn.btn-red {
-  background-color: colors.$red;
-  color: colors.$white;
-}
-.btn.btn-red:hover {
-  background-color: colors.$red2;
-}
-.btn[disabled] {
-  background-color: colors.$lightgrey3;
-  color: colors.$black;
-}
-.btn[disabled]:hover {
-  background-color: colors.$lightgrey3;
-  color: colors.$black;
-}
-.btn.btn-grey {
-  background-color: colors.$lightgrey3;
-  color: colors.$darkgrey;
-}
-.btn.btn-lg {
-  padding: 0.5rem 1.5rem;
-}
-.btn.btn-md {
-  padding: 0.5rem 1rem;
-}
-.btn.btn-sm {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.88rem;
-}
-.btn.btn-rounded-md {
-  border-radius: 0.5rem;
-}
-.btn.btn-rounded-sm {
-  border-radius: 0.25rem;
+
+  // COLORS
+  &.btn-blue {
+    background-color: colors.$blue;
+    color: colors.$white;
+
+    &:hover {
+      background-color: colors.$blue2;
+    }
+  }
+  &.btn-red {
+    background-color: colors.$red;
+    color: colors.$white;
+
+    &:hover {
+      background-color: colors.$red2;
+    }
+  }
+  &.btn-grey {
+    background-color: colors.$lightgrey3;
+    color: colors.$darkgrey;
+
+    &:hover {
+      background-color: colors.$lightgrey4;
+    }
+  }
+
+  // ATTRIBUTES
+  &[disabled] {
+    background-color: colors.$lightgrey3;
+    color: colors.$black;
+
+    &:hover {
+      background-color: colors.$lightgrey3;
+      color: colors.$black;
+    }
+  }
+
+  // SIZES
+  &.btn-lg {
+    padding: 0.5rem 1.5rem;
+  }
+  &.btn-md {
+    padding: 0.5rem 1rem;
+  }
+  &.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.88rem;
+  }
+  &.btn-rounded-md {
+    border-radius: 0.5rem;
+  }
+  &.btn-rounded-sm {
+    border-radius: 0.25rem;
+  }
+
 }
