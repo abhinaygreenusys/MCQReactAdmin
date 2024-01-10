@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import "./App.css";
+import "./App.scss";
 
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";

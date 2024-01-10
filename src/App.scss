@@ -1,7 +1,9 @@
+@use "src/colors";
+
 body {
-  color: var(--black);
+  color: colors.$black;
   font-family: "Inter", sans-serif;
-  background: var(--lightgrey2);
+  background: colors.$lightgrey2;
 }
 
 h1,
@@ -40,13 +42,13 @@ h6 {
 input,
 select {
   padding: 0.5rem 1rem;
-  border: solid 2px var(--lightgrey4);
+  border: solid 2px colors.$lightgrey4;
   border-radius: 0.5rem;
-  background: var(--lightgrey2);
+  background: colors.$lightgrey2;
   transition: all 0.2s ease-in-out;
 }
 input:focus,
 select:focus {
   outline: none;
-  border: solid 2px var(--blue);
+  border: solid 2px colors.$blue;
 }
