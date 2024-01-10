@@ -5,7 +5,7 @@ import {
   MdOutlineArrowForwardIos,
   MdOutlineArrowBackIosNew,
 } from "react-icons/md";
-import "./pagination.css";
+import "./pagination.scss";
 
 const Pagination = ({ page, setPage, lastPage, size = "md" }) => {
   const initialise = () => {

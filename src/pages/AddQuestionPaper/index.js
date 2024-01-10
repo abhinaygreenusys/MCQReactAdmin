@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
@@ -6,7 +7,9 @@ import Table from "../../components/common/Table";
 import Pagination from "../../components/common/Pagination";
 
 const AddQuestionPaper = () => {
-  const [time, setTime] = useState("00:00");
+  const navigate = useNavigate();
+
+  const [duration, setDuration] = useState(0);
   const [difficulty, setDifficulty] = useState("");
   const [questionIds, setQuestionIds] = useState([]);
 
@@ -15,18 +18,16 @@ const AddQuestionPaper = () => {
       return myToast("Please select at least one question", "failure");
     try {
       const { data } = await api.post("/generateQuestionPaper", {
-        time: 10,
+        time: +duration,
         difficulty,
         questionIds,
       });
       console.log(data);
       myToast(data.message, "success");
+      navigate("/question-paper-list")
     } catch (err) {
       console.log(err);
-      myToast(
-        err?.response?.data?.error || "Something went wrong",
-        "failure"
-      );
+      myToast(err?.response?.data?.error || "Something went wrong", "failure");
     }
   };
 
@@ -43,10 +44,7 @@ const AddQuestionPaper = () => {
       setTotalPages(data.totalPages);
     } catch (err) {
       console.log(err);
-      myToast(
-        err?.response?.data?.error || "Something went wrong",
-        "failure"
-      );
+      myToast(err?.response?.data?.error || "Something went wrong", "failure");
     }
     setLoading(false);
   };
@@ -65,12 +63,15 @@ const AddQuestionPaper = () => {
           }}
         >
           <div className="mb-4">
-            <h5 className="mb-1">Time</h5>
+            <h5 className="mb-1">Duration (in minutes)</h5>
             <input
               className="w-full"
-              type="time"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
+              type="text"
+              value={duration}
+              onChange={(e) => {
+                if (isNaN(e.target.value)) return;
+                setDuration(e.target.value);
+              }}
               required
             />
           </div>

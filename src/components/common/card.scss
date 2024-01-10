@@ -1,6 +1,8 @@
+@use "src/colors";
+
 .card {
-  border: solid 1px var(--lightgrey3);
-  background-color: var(--white);
+  border: solid 1px colors.$lightgrey3;
+  background-color: colors.$white;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,6 +1,8 @@
+@use "src/colors";
+
 table thead {
-  background-color: var(--black);
-  color: var(--white);
+  background-color: colors.$black;
+  color: colors.$white;
 }
 table thead th {
   font-weight: 400;
@@ -16,8 +18,8 @@ table thead th:last-of-type {
 table tbody td {
   padding: 0.75rem 1.5rem;
   font-weight: 500;
-  background: var(--white);
+  background: colors.$white;
 }
 table tbody tr:not(:last-of-type) {
-  border-bottom: 1px solid var(--lightgrey3);
+  border-bottom: 1px solid colors.$lightgrey3;
 }

@@ -1,10 +1,12 @@
+@use "src/colors";
+
 .pagination {
   padding: 0.5rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.75rem;
-  color: var(--black);
+  color: colors.$black;
   font-weight: 500;
 }
 .pagination .pagination-dots {
@@ -18,13 +20,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--lightgrey);
+  border: 1px solid colors.$lightgrey;
   border-radius: 0.5rem;
 }
 .pagination .pagination-num.active {
-  background-color: var(--blue);
-  color: var(--white);
+  background-color: colors.$blue;
+  color: colors.$white;
 }
 .pagination .disabled.pagination-btn {
-  color: var(--lightgrey3);
+  color: colors.$lightgrey3;
 }

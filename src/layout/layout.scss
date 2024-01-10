@@ -1,6 +1,8 @@
+@use "src/colors";
+
 .sidebar {
-  background: var(--black);
-  color: var(--white);
+  background: colors.$black;
+  color: colors.$white;
   box-shadow: 3px 0px 6px 0px rgba(176, 176, 176, 0.1),
     11px 0px 11px 0px rgba(176, 176, 176, 0.09),
     24px 0px 15px 0px rgba(176, 176, 176, 0.05),
@@ -24,10 +26,10 @@
   transition: all 0.2s ease-in-out;
 }
 .sidebar .sidebar-item.active {
-  background: var(--blue);
+  background: colors.$blue;
 }
 .sidebar .sidebar-item:not(.active):hover {
-  background: var(--grey);
+  background: colors.$grey;
 }
 
 
