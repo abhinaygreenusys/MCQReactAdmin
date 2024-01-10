@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import myToast from "../../components/utils/myToast";
+import PassContext from "../../components/utils/PassContext";
 import { PiExam } from "react-icons/pi";
 import { IoIosPaper } from "react-icons/io";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdLogout } from "react-icons/md";
 import { ImUsers } from "react-icons/im";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const {setLoggedUser} = useContext(PassContext);
 
   const data = [
     {
@@ -62,6 +65,18 @@ const Sidebar = () => {
             {item.name}
           </li>
         ))}
+        <li
+          className="sidebar-item cursor-pointer"
+          onClick={() => {
+            localStorage.removeItem("mcq-token");
+            setLoggedUser("")
+            myToast("Logged out successfully", "success");
+            navigate("/auth/login");
+          }}
+        >
+          <MdLogout />
+          Logout
+        </li>
       </ul>
     </div>
   );
