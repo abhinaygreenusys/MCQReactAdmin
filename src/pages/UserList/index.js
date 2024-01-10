@@ -18,10 +18,7 @@ const UserList = () => {
       setTotalPages(data.totalPages);
     } catch (err) {
       console.log(err);
-      myToast(
-        err?.response?.data?.error || "Something went wrong",
-        "failure"
-      );
+      myToast(err?.response?.data?.error || "Something went wrong", "failure");
     }
     setLoading(false);
   };
@@ -30,10 +27,10 @@ const UserList = () => {
   }, []);
   return (
     <div>
-      <h2 className="mb-8">All Question Papers</h2>
+      <h2 className="mb-8">All Users</h2>
       <div>
         <Table
-          tHead={["S.No.", "Name", "ID", "Email", "Status", "Tests"]}
+          tHead={["S.No.", "Name", "ID", "Email", "Status", "Tests Completed"]}
           loading={loading}
         >
           {users.map((item, index) => (
@@ -43,7 +40,7 @@ const UserList = () => {
               <td>{item.employeeId}</td>
               <td>{item.email}</td>
               <td>{item.isVerified ? "Verified" : "Not Verified"}</td>
-              <td></td>
+              <td>{item.tests?.length}</td>
             </tr>
           ))}
         </Table>
