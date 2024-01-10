@@ -14,9 +14,9 @@ const ViewQuestions = () => {
         <span className="text-xl font-medium">Go Back</span>
       </Link>
       <div>
-        {questions
-          ? questions.map((item, index) => (
-              <Table tHead={["S.No.", "Question", "Options"]}>
+        <Table tHead={["S.No.", "Question", "Options"]}>
+          {questions
+            ? questions.map((item, index) => (
                 <tr key={item._id}>
                   <td>{index + 1}</td>
                   <td>{item.question}</td>
@@ -55,9 +55,9 @@ const ViewQuestions = () => {
                     </ul>
                   </td>
                 </tr>
-              </Table>
-            ))
-          : "Some error occured"}
+              ))
+            : "Some error occured"}
+        </Table>
       </div>
     </div>
   );
