@@ -5,7 +5,6 @@ import Card from "../../components/common/Card";
 import Button from "../../components/common/Button";
 import myToast from "../../components/utils/myToast";
 import PassContext from "../../components/utils/PassContext";
-import "./auth.scss";
 
 const Auth = () => {
   const navigate = useNavigate();
