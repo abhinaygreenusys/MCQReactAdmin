@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
 
 const UpdateQuestion = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [question, setQuestion] = useState("");
   const [option1, setOption1] = useState("");
@@ -17,7 +18,7 @@ const UpdateQuestion = () => {
     if (answer === "sample answer")
       return myToast("Please select an answer from the options", "failure");
     try {
-      const { data } = await api.post("/updateQuestion", {
+      const { data } = await api.patch(`/updateQuestion/${id}`, {
         question,
         option1,
         option2,
@@ -27,18 +28,10 @@ const UpdateQuestion = () => {
       });
       console.log(data);
       myToast(data.message, "success");
-      setQuestion("");
-      setOption1("");
-      setOption2("");
-      setOption3("");
-      setOption4("");
-      setAnswer("sample answer");
+      navigate("/question-list");
     } catch (err) {
       console.log(err);
-      myToast(
-        err?.response?.data?.error || "Something went wrong",
-        "failure"
-      );
+      myToast(err?.response?.data?.error || "Something went wrong", "failure");
     }
   };
 
@@ -46,18 +39,15 @@ const UpdateQuestion = () => {
     try {
       const { data } = await api.get(`/getQuestion/${id}`);
       console.log(data);
-      setQuestion(data.question);
-      setOption1(data.option1);
-      setOption2(data.option2);
-      setOption3(data.option3);
-      setOption4(data.option4);
-      setAnswer(data.answer);
+      setQuestion(data?.result?.question);
+      setOption1(data?.result?.option1);
+      setOption2(data?.result?.option2);
+      setOption3(data?.result?.option3);
+      setOption4(data?.result?.option4);
+      setAnswer(data?.result?.answer);
     } catch (err) {
       console.log(err);
-      myToast(
-        err?.response?.data?.error || "Something went wrong",
-        "failure"
-      );
+      myToast(err?.response?.data?.error || "Something went wrong", "failure");
     }
   };
   useEffect(() => {
