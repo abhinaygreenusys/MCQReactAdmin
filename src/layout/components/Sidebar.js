@@ -44,7 +44,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="px-6 py-5">
         <Link to="/" className="flex gap-2 items-center">
-          <img src="/assets/logo.png" alt="logo" className="h-12 w-12" />
+          <img src="/app_logo.png" alt="logo" className="h-12 w-12" />
           <span className="font-semibold">Admin Panel</span>
         </Link>
       </div>
