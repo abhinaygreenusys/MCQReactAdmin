@@ -27,7 +27,7 @@ const Pagination = ({ page, setPage, lastPage, size = "md" }) => {
     }
   };
 
-  if (lastPage === null || lastPage === 1) return "";
+  if (lastPage === null || lastPage === 1 || lastPage === 0) return "";
   return (
     <div className={`pagination ${size}`}>
       <button
