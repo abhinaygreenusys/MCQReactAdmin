@@ -15,10 +15,11 @@ import QuestionList from "./pages/QuestionList";
 import AddQuestion from "./pages/AddQuestion";
 import UpdateQuestion from "./pages/UpdateQuestion";
 import UserList from "./pages/UserList";
+import ModeratorList from "./pages/ModeratorList";
+import AddModerator from "./pages/AddModerator";
 // import QuestionPaperList from "./pages/QuestionPaperList";
 // import ViewQuestions from "./pages/ViewQuestions";
 // import AddQuestionPaper from "./pages/AddQuestionPaper";
-
 
 const routes = createBrowserRouter([
   {
@@ -69,6 +70,14 @@ const routes = createBrowserRouter([
             path: "/user-list",
             element: <UserList />,
           },
+          {
+            path: "/moderator-list",
+            element: <ModeratorList />,
+          },
+          {
+            path: "/moderator-list/add-moderator",
+            element: <AddModerator />,
+          }
         ],
       },
     ],

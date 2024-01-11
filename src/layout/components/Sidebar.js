@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import myToast from "../../components/utils/myToast";
 import PassContext from "../../components/utils/PassContext";
 import { IoIosPaper } from "react-icons/io";
-import { MdDashboard, MdLogout, MdCategory } from "react-icons/md";
+import { MdDashboard, MdLogout, MdCategory, MdShield } from "react-icons/md";
 import { ImUsers } from "react-icons/im";
 
 const Sidebar = () => {
@@ -37,6 +37,11 @@ const Sidebar = () => {
       name: "Users",
       link: "/user-list",
     },
+    {
+      icon: <MdShield />,
+      name: "Moderators",
+      link: "/moderator-list",
+    }
   ];
   const [active, setActive] = useState(0);
   useEffect(() => {
