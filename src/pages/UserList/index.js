@@ -33,16 +33,24 @@ const UserList = () => {
           tHead={["S.No.", "Name", "ID", "Email", "Status", "Tests Completed"]}
           loading={loading}
         >
-          {users.map((item, index) => (
-            <tr key={item._id}>
-              <td>{index + 1}</td>
-              <td>{item.name}</td>
-              <td>{item.employeeId}</td>
-              <td>{item.email}</td>
-              <td>{item.isVerified ? "Verified" : "Not Verified"}</td>
-              <td>{item.tests?.length}</td>
+          {users.length > 0 ? (
+            users.map((item, index) => (
+              <tr key={item._id}>
+                <td>{index + 1}</td>
+                <td>{item.name}</td>
+                <td>{item.employeeId}</td>
+                <td>{item.email}</td>
+                <td>{item.isVerified ? "Verified" : "Not Verified"}</td>
+                <td>{item.tests?.length}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6" className="text-center">
+                No Users Found
+              </td>
             </tr>
-          ))}
+          )}
         </Table>
         <Pagination lastPage={totalPages} page={page} setPage={setPage} />
       </div>
