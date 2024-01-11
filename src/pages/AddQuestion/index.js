@@ -1,10 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
 
 const AddQuestion = () => {
+  const [categories, setCategories] = useState([]);
+  const getCategories = async () => {
+    try {
+      const { data } = await api.get("/getCategories");
+      console.log(data);
+      setCategories(data.result);
+    } catch (err) {
+      console.log(err);
+      myToast(err?.response?.data?.error || "Something went wrong", "failure");
+    }
+  };
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   const [question, setQuestion] = useState("");
+  const [category, setCategory] = useState("");
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");
   const [option3, setOption3] = useState("");
@@ -16,6 +33,7 @@ const AddQuestion = () => {
     try {
       const { data } = await api.post("/addQuestion", {
         question,
+        category,
         option1,
         option2,
         option3,
@@ -32,10 +50,7 @@ const AddQuestion = () => {
       setAnswer("sample answer");
     } catch (err) {
       console.log(err);
-      myToast(
-        err?.response?.data?.error || "Something went wrong",
-        "failure"
-      );
+      myToast(err?.response?.data?.error || "Something went wrong", "failure");
     }
   };
 
@@ -59,6 +74,27 @@ const AddQuestion = () => {
               onChange={(e) => setQuestion(e.target.value)}
               required
             />
+          </div>
+          <div className="mb-4">
+            <div className="mb-1 flex gap-2">
+              <h5>Category</h5>
+              <Link to="/manage-categories" className="text-sm text-blue">
+                (Click here to add a new category)
+              </Link>
+            </div>
+            <select
+              className="w-full"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              <option value="">Select Category</option>
+              {categories.map((item, index) => (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="mb-4">
             <div className="mb-1 flex gap-2">

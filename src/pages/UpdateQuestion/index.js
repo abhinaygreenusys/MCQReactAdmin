@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
@@ -9,6 +9,7 @@ const UpdateQuestion = () => {
   const navigate = useNavigate();
 
   const [question, setQuestion] = useState("");
+  const [category, setCategory] = useState("");
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");
   const [option3, setOption3] = useState("");
@@ -20,6 +21,7 @@ const UpdateQuestion = () => {
     try {
       const { data } = await api.patch(`/updateQuestion/${id}`, {
         question,
+        category,
         option1,
         option2,
         option3,
@@ -40,6 +42,7 @@ const UpdateQuestion = () => {
       const { data } = await api.get(`/getQuestion/${id}`);
       console.log(data);
       setQuestion(data?.result?.question);
+      setCategory(data?.result?.category);
       setOption1(data?.result?.option1);
       setOption2(data?.result?.option2);
       setOption3(data?.result?.option3);
@@ -50,8 +53,20 @@ const UpdateQuestion = () => {
       myToast(err?.response?.data?.error || "Something went wrong", "failure");
     }
   };
+  const [categories, setCategories] = useState([]);
+  const getCategories = async () => {
+    try {
+      const { data } = await api.get("/getCategories");
+      console.log(data);
+      setCategories(data.result);
+    } catch (err) {
+      console.log(err);
+      myToast(err?.response?.data?.error || "Something went wrong", "failure");
+    }
+  };
   useEffect(() => {
     getQuestion();
+    getCategories();
   }, []);
 
   return (
@@ -74,6 +89,27 @@ const UpdateQuestion = () => {
               onChange={(e) => setQuestion(e.target.value)}
               required
             />
+          </div>
+          <div className="mb-4">
+            <div className="mb-1 flex gap-2">
+              <h5>Category</h5>
+              <Link to="/manage-categories" className="text-sm text-blue">
+                (Click here to add a new category)
+              </Link>
+            </div>
+            <select
+              className="w-full"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              <option value="">Select Category</option>
+              {categories.map((item, index) => (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="mb-4">
             <div className="mb-1 flex gap-2">

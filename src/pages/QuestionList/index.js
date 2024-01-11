@@ -23,10 +23,7 @@ const QuestionList = () => {
       setTotalPages(data.totalPages);
     } catch (err) {
       console.log(err);
-      myToast(
-        err?.response?.data?.error || "Something went wrong",
-        "failure"
-      );
+      myToast(err?.response?.data?.error || "Something went wrong", "failure");
     }
     setLoading(false);
   };
@@ -42,73 +39,87 @@ const QuestionList = () => {
       getQuestions();
     } catch (err) {
       console.log(err);
-      myToast(
-        err?.response?.data?.error || "Something went wrong",
-        "failure"
-      );
+      myToast(err?.response?.data?.error || "Something went wrong", "failure");
     }
   };
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
         <h2>All Questions</h2>
-        <Link to="/add-question">
+        <Link to="./add-question">
           <Button>Add Question</Button>
         </Link>
       </div>
       <div>
         <Table
-          tHead={["S.No.", "Question", "Options", "Action"]}
+          tHead={["S.No.", "Category", "Question", "Options", "Action"]}
           loading={loading}
         >
-          {questions.map((item, index) => (
-            <tr key={item._id}>
-              <td>{index + 1}</td>
-              <td>{item.question}</td>
-              <td>
-                <ul className="flex gap-x-4 gap-y-2 flexx-wrap">
-                  <li
-                    className={item.option1 === item.answer ? "text-green" : ""}
-                  >
-                    A. {item.option1}
-                  </li>
-                  <li
-                    className={item.option2 === item.answer ? "text-green" : ""}
-                  >
-                    B. {item.option2}
-                  </li>
-                </ul>
-                <ul className="flex gap-x-4 gap-y-2 flexx-wrap">
-                  <li
-                    className={item.option3 === item.answer ? "text-green" : ""}
-                  >
-                    C. {item.option3}
-                  </li>
-                  <li
-                    className={item.option4 === item.answer ? "text-green" : ""}
-                  >
-                    D. {item.option4}
-                  </li>
-                </ul>
-              </td>
-              <td>
-                <div className="flex gap-x-2">
-                  <span
-                    className="cursor-pointer p-4"
-                    onClick={() => navigate(`/update-question/${item._id}`)}
-                  >
-                    <RiEdit2Line />
-                  </span>
-                  <span
-                    className="cursor-pointer p-4"
-                    onClick={() => handleDelete(item._id)}
-                  >
-                    <RiDeleteBinLine />
-                  </span>
-                </div>
+          {questions.length > 0 ? (
+            questions.map((item, index) => (
+              <tr key={item._id}>
+                <td>{index + 1}</td>
+                <td>{item.category}</td>
+                <td>{item.question}</td>
+                <td>
+                  <ul className="flex gap-x-4 gap-y-2 flexx-wrap">
+                    <li
+                      className={
+                        item.option1 === item.answer ? "text-green" : ""
+                      }
+                    >
+                      A. {item.option1}
+                    </li>
+                    <li
+                      className={
+                        item.option2 === item.answer ? "text-green" : ""
+                      }
+                    >
+                      B. {item.option2}
+                    </li>
+                  </ul>
+                  <ul className="flex gap-x-4 gap-y-2 flexx-wrap">
+                    <li
+                      className={
+                        item.option3 === item.answer ? "text-green" : ""
+                      }
+                    >
+                      C. {item.option3}
+                    </li>
+                    <li
+                      className={
+                        item.option4 === item.answer ? "text-green" : ""
+                      }
+                    >
+                      D. {item.option4}
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <div className="flex gap-x-2">
+                    <span
+                      className="cursor-pointer p-4"
+                      onClick={() => navigate(`./update-question/${item._id}`)}
+                    >
+                      <RiEdit2Line />
+                    </span>
+                    <span
+                      className="cursor-pointer p-4"
+                      onClick={() => handleDelete(item._id)}
+                    >
+                      <RiDeleteBinLine />
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5" className="text-center">
+                No Questions Found
               </td>
             </tr>
-          ))}
+          )}
         </Table>
         <Pagination lastPage={totalPages} page={page} setPage={setPage} />
       </div>

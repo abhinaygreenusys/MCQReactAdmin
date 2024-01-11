@@ -1,23 +1,24 @@
 import { useState, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import PassContext from "./components/utils/PassContext";
+import ProtectedRoute from "./components/utils/ProtectedRoute";
+import "react-simple-toasts/dist/theme/success.css";
+import "react-simple-toasts/dist/theme/failure.css";
 import "./App.scss";
 
 import Auth from "./pages/Auth";
+import Layout from "./layout";
 import Dashboard from "./pages/Dashboard";
+import ManageCategories from "./pages/ManageCategories";
 import QuestionList from "./pages/QuestionList";
-// import QuestionPaperList from "./pages/QuestionPaperList";
-import UserList from "./pages/UserList";
 import AddQuestion from "./pages/AddQuestion";
 import UpdateQuestion from "./pages/UpdateQuestion";
-import AddQuestionPaper from "./pages/AddQuestionPaper";
-import Layout from "./layout";
-
-import "react-simple-toasts/dist/theme/success.css";
-import "react-simple-toasts/dist/theme/failure.css";
-import PassContext from "./components/utils/PassContext";
-import ProtectedRoute from "./components/utils/ProtectedRoute";
+import UserList from "./pages/UserList";
+// import QuestionPaperList from "./pages/QuestionPaperList";
 // import ViewQuestions from "./pages/ViewQuestions";
+// import AddQuestionPaper from "./pages/AddQuestionPaper";
+
 
 const routes = createBrowserRouter([
   {
@@ -37,8 +38,20 @@ const routes = createBrowserRouter([
             element: <Dashboard />,
           },
           {
+            path: "/manage-categories",
+            element: <ManageCategories />,
+          },
+          {
             path: "/question-list",
             element: <QuestionList />,
+          },
+          {
+            path: "/question-list/add-question",
+            element: <AddQuestion />,
+          },
+          {
+            path: "/question-list/update-question/:id",
+            element: <UpdateQuestion />,
           },
           // {
           //   path: "/question-paper-list",
@@ -48,21 +61,13 @@ const routes = createBrowserRouter([
           //   path: "/question-paper-list/:id",
           //   element: <ViewQuestions />,
           // },
+          // {
+          //   path: "/question-paper-list/add-question-paper",
+          //   element: <AddQuestionPaper />,
+          // },
           {
             path: "/user-list",
             element: <UserList />,
-          },
-          {
-            path: "/add-question",
-            element: <AddQuestion />,
-          },
-          {
-            path: "/update-question/:id",
-            element: <UpdateQuestion />,
-          },
-          {
-            path: "/add-question-paper",
-            element: <AddQuestionPaper />,
           },
         ],
       },
