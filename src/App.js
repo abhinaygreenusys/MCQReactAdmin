@@ -6,7 +6,7 @@ import "./App.scss";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import QuestionList from "./pages/QuestionList";
-import QuestionPaperList from "./pages/QuestionPaperList";
+// import QuestionPaperList from "./pages/QuestionPaperList";
 import UserList from "./pages/UserList";
 import AddQuestion from "./pages/AddQuestion";
 import UpdateQuestion from "./pages/UpdateQuestion";
@@ -17,7 +17,7 @@ import "react-simple-toasts/dist/theme/success.css";
 import "react-simple-toasts/dist/theme/failure.css";
 import PassContext from "./components/utils/PassContext";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
-import ViewQuestions from "./pages/ViewQuestions";
+// import ViewQuestions from "./pages/ViewQuestions";
 
 const routes = createBrowserRouter([
   {
@@ -40,14 +40,14 @@ const routes = createBrowserRouter([
             path: "/question-list",
             element: <QuestionList />,
           },
-          {
-            path: "/question-paper-list",
-            element: <QuestionPaperList />,
-          },
-          {
-            path: "/question-paper-list/:id",
-            element: <ViewQuestions />,
-          },
+          // {
+          //   path: "/question-paper-list",
+          //   element: <QuestionPaperList />,
+          // },
+          // {
+          //   path: "/question-paper-list/:id",
+          //   element: <ViewQuestions />,
+          // },
           {
             path: "/user-list",
             element: <UserList />,

@@ -23,11 +23,11 @@ const Sidebar = () => {
       name: "Questions",
       link: "/question-list",
     },
-    {
-      icon: <PiExam />,
-      name: "Question Papers",
-      link: "/question-paper-list",
-    },
+    // {
+    //   icon: <PiExam />,
+    //   name: "Question Papers",
+    //   link: "/question-paper-list",
+    // },
     {
       icon: <ImUsers />,
       name: "Users",
