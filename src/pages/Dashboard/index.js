@@ -33,10 +33,10 @@ const Dashboard = () => {
           <div>Loading...</div>
         ) : (
           <div className="flex gap-x-8 gap-y-4 flex-wrap">
-            {Object.keys(dashboardData).map((key, value) => (
+            {Object.keys(dashboardData).map((key) => (
               <Card key={key} className="bg-white w-48">
                 <h5 className="capitalize mb-2">{key}</h5>
-                <h3 className="text-center">{value}</h3>
+                <h3 className="text-center">{dashboardData[key]}</h3>
               </Card>
             ))}
           </div>
