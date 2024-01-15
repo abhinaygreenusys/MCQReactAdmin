@@ -20,6 +20,7 @@ import AddModerator from "./pages/AddModerator";
 // import QuestionPaperList from "./pages/QuestionPaperList";
 // import ViewQuestions from "./pages/ViewQuestions";
 // import AddQuestionPaper from "./pages/AddQuestionPaper";
+import TestList from "./pages/TestList";
 
 const routes = createBrowserRouter([
   {
@@ -71,13 +72,17 @@ const routes = createBrowserRouter([
             element: <UserList />,
           },
           {
+            path: "/test-list",
+            element: <TestList />,
+          },
+          {
             path: "/moderator-list",
             element: <ModeratorList />,
           },
           {
             path: "/moderator-list/add-moderator",
             element: <AddModerator />,
-          }
+          },
         ],
       },
     ],

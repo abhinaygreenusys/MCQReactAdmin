@@ -5,6 +5,7 @@ import PassContext from "../../components/utils/PassContext";
 import { IoIosPaper } from "react-icons/io";
 import { MdDashboard, MdLogout, MdCategory, MdShield } from "react-icons/md";
 import { ImUsers } from "react-icons/im";
+import { PiExam } from "react-icons/pi";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -36,6 +37,11 @@ const Sidebar = () => {
       icon: <ImUsers />,
       name: "Users",
       link: "/user-list",
+    },
+    {
+      icon: <PiExam />,
+      name: "Test List",
+      link: "/test-list",
     },
     {
       icon: <MdShield />,
