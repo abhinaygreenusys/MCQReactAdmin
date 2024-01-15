@@ -30,7 +30,7 @@ const UserList = () => {
       <h2 className="mb-8">All Users</h2>
       <div>
         <Table
-          tHead={["S.No.", "Name", "ID", "Email", "Status", "Tests Completed"]}
+          tHead={["S.No.", "Name", "ID", "Email", "Status"]}
           loading={loading}
         >
           {users.length > 0 ? (
@@ -41,12 +41,11 @@ const UserList = () => {
                 <td>{item.employeeId}</td>
                 <td>{item.email}</td>
                 <td>{item.isVerified ? "Verified" : "Not Verified"}</td>
-                <td>{item.tests?.length}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="6" className="text-center">
+              <td colSpan="5" className="text-center">
                 No Users Found
               </td>
             </tr>
