@@ -29,7 +29,7 @@ const QuestionList = () => {
   };
   useEffect(() => {
     getQuestions();
-  }, []);
+  }, [page]);
 
   const handleDelete = async (id) => {
     try {

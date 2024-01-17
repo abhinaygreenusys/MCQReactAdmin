@@ -24,7 +24,7 @@ const UserList = () => {
   };
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [page]);
   return (
     <div>
       <h2 className="mb-8">All Users</h2>
