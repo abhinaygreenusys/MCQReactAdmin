@@ -62,7 +62,7 @@ const QuestionList = () => {
                 <td>{item.category}</td>
                 <td>{item.question}</td>
                 <td>
-                  <ul className="flex gap-x-4 gap-y-2 flexx-wrap">
+                  <ul className="flex flex-col gap-y-2">
                     <li
                       className={
                         item.option1 === item.answer ? "text-green" : ""
@@ -77,8 +77,6 @@ const QuestionList = () => {
                     >
                       B. {item.option2}
                     </li>
-                  </ul>
-                  <ul className="flex gap-x-4 gap-y-2 flexx-wrap">
                     <li
                       className={
                         item.option3 === item.answer ? "text-green" : ""
