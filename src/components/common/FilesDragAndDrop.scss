@@ -1,0 +1,26 @@
+.FilesDragAndDrop {
+  .FilesDragAndDrop__area {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #555555;
+    border: 1.5px #c3c3c3 dashed;
+    border-radius: 0.5rem;
+    background-color: #a4cee549;
+    word-break: break-all;
+  }
+  .area__icon {
+    font-size: 64px;
+    margin-top: 20px;
+  }
+  input.hidden {
+    position: absolute;
+    left: -1rem;
+    top: -1rem;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    cursor: default;
+  }
+}

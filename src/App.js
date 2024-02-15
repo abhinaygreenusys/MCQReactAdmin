@@ -17,10 +17,8 @@ import UpdateQuestion from "./pages/UpdateQuestion";
 import UserList from "./pages/UserList";
 import ModeratorList from "./pages/ModeratorList";
 import AddModerator from "./pages/AddModerator";
-// import QuestionPaperList from "./pages/QuestionPaperList";
-// import ViewQuestions from "./pages/ViewQuestions";
-// import AddQuestionPaper from "./pages/AddQuestionPaper";
 import TestList from "./pages/TestList";
+import UploadTestInstructions from "./pages/UploadTestInstructions";
 
 const routes = createBrowserRouter([
   {
@@ -40,6 +38,10 @@ const routes = createBrowserRouter([
             element: <Dashboard />,
           },
           {
+            path: "/upload-test-instructions",
+            element: <UploadTestInstructions />,
+          },
+          {
             path: "/manage-categories",
             element: <ManageCategories />,
           },
@@ -55,18 +57,6 @@ const routes = createBrowserRouter([
             path: "/question-list/update-question/:id",
             element: <UpdateQuestion />,
           },
-          // {
-          //   path: "/question-paper-list",
-          //   element: <QuestionPaperList />,
-          // },
-          // {
-          //   path: "/question-paper-list/:id",
-          //   element: <ViewQuestions />,
-          // },
-          // {
-          //   path: "/question-paper-list/add-question-paper",
-          //   element: <AddQuestionPaper />,
-          // },
           {
             path: "/user-list",
             element: <UserList />,

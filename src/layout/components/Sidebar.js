@@ -20,6 +20,11 @@ const Sidebar = () => {
     },
     {
       icon: <MdCategory />,
+      name: "Upload Instructions",
+      link: "/upload-test-instructions",
+    },
+    {
+      icon: <MdCategory />,
       name: "Manage Categories",
       link: "/manage-categories",
     },
@@ -28,11 +33,6 @@ const Sidebar = () => {
       name: "Questions",
       link: "/question-list",
     },
-    // {
-    //   icon: <PiExam />,
-    //   name: "Question Papers",
-    //   link: "/question-paper-list",
-    // },
     {
       icon: <ImUsers />,
       name: "Users",
@@ -47,7 +47,7 @@ const Sidebar = () => {
       icon: <MdShield />,
       name: "Moderators",
       link: "/moderator-list",
-    }
+    },
   ];
   const [active, setActive] = useState(0);
   useEffect(() => {
@@ -64,7 +64,7 @@ const Sidebar = () => {
         </Link>
       </div>
       <hr className="mx-5" />
-      <ul>
+      <ul className="my-4">
         {data.map((item, index) => (
           <li
             key={index}
