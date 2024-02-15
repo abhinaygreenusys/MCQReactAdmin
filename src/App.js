@@ -11,6 +11,7 @@ import Auth from "./pages/Auth";
 import Layout from "./layout";
 import Dashboard from "./pages/Dashboard";
 import ManageCategories from "./pages/ManageCategories";
+import AddCategory from "./pages/AddCategory";
 import QuestionList from "./pages/QuestionList";
 import AddQuestion from "./pages/AddQuestion";
 import UpdateQuestion from "./pages/UpdateQuestion";
@@ -44,6 +45,10 @@ const routes = createBrowserRouter([
           {
             path: "/manage-categories",
             element: <ManageCategories />,
+          },
+          {
+            path: "/manage-categories/add-category",
+            element: <AddCategory />,
           },
           {
             path: "/question-list",
