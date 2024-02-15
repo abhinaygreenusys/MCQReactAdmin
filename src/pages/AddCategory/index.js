@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
@@ -6,6 +7,8 @@ import FilesDragAndDrop from "../../components/common/FilesDragAndDrop";
 import { TbLoader2 } from "react-icons/tb";
 
 const AddCategory = () => {
+    const navigate = useNavigate();
+
     const [newCategoryName, setNewCategoryName] = useState("");
     const [filename, setFilename] = useState("");
     // for file upload task
@@ -28,10 +31,8 @@ const AddCategory = () => {
           },
         });
         console.log(data);
-        setNewCategoryName("");
-        setSelectedFiles([]);
-        setFilename("");
         myToast(data.message, "success");
+        navigate("/manage-categories");
       } catch (err) {
         console.log(err);
         myToast(err?.response?.data?.error || "Something went wrong", "failure");
