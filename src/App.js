@@ -19,6 +19,7 @@ import UserList from "./pages/UserList";
 import ModeratorList from "./pages/ModeratorList";
 import AddModerator from "./pages/AddModerator";
 import TestList from "./pages/TestList";
+import TestResponses from "./pages/TestResponses";
 import UploadTestInstructions from "./pages/UploadTestInstructions";
 
 const routes = createBrowserRouter([
@@ -69,6 +70,10 @@ const routes = createBrowserRouter([
           {
             path: "/test-list",
             element: <TestList />,
+          },
+          {
+            path: "/test-list/:id",
+            element: <TestResponses />,
           },
           {
             path: "/moderator-list",
