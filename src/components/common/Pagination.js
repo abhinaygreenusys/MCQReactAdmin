@@ -26,8 +26,14 @@ const Pagination = ({ page, setPage, lastPage, size = "md" }) => {
       setPagesList(initialise());
     }
   };
-
-  if (lastPage === null || lastPage === 1 || lastPage === 0) return "";
+  if (
+    lastPage === null ||
+    lastPage === 1 ||
+    lastPage === 0 ||
+    lastPage === undefined
+  )
+    return "";
+    
   return (
     <div className={`pagination ${size}`}>
       <button
