@@ -14,6 +14,7 @@ import ManageCategories from "./pages/ManageCategories";
 import AddCategory from "./pages/AddCategory";
 import QuestionList from "./pages/QuestionList";
 import AddQuestion from "./pages/AddQuestion";
+import AddBulkQuestions from "./pages/AddBulkQuestions";
 import UpdateQuestion from "./pages/UpdateQuestion";
 import UserList from "./pages/UserList";
 import ModeratorList from "./pages/ModeratorList";
@@ -50,6 +51,10 @@ const routes = createBrowserRouter([
           {
             path: "/manage-categories/add-category",
             element: <AddCategory />,
+          },
+          {
+            path: "/manage-categories/:id/add-bulk-questions",
+            element: <AddBulkQuestions />,
           },
           {
             path: "/question-list",
