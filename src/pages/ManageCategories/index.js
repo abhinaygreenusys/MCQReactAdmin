@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
-import { MdOutlineClose } from "react-icons/md";
+import Table from "../../components/common/Table";
 
 const ManageCategories = () => {
+  const navigate = useNavigate();
+
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
   const getCategories = async () => {
+    setLoading(true);
     try {
       const { data } = await api.get("/getCategories");
       console.log(data);
@@ -16,6 +20,7 @@ const ManageCategories = () => {
       console.log(err);
       myToast(err?.response?.data?.error || "Something went wrong", "failure");
     }
+    setLoading(false);
   };
   useEffect(() => {
     getCategories();
@@ -43,34 +48,56 @@ const ManageCategories = () => {
           <Button>Add Category</Button>
         </Link>
       </div>
-      <div className="flex flex-wrap gap-4">
-        {categories.length > 0 ? (
-          categories.map((item, index) => (
-            <div
-              key={index}
-              className="border border-gray-300 rounded-md bg-white"
-            >
-              <div className="flex justify-between items-center gap-4">
-                <div className="px-4">{item.name}</div>
-                <span
-                  className="p-2 cursor-pointer"
-                  onClick={() => deleteCategory(item._id)}
-                >
-                  <MdOutlineClose />
-                </span>
-              </div>
-              <video
-                src={process.env.REACT_APP_BASE_VIDEO_URL + "/" + item.url}
-                controls
-                width="480"
-                height="360"
-                className="px-2 pb-2"
-              />
-            </div>
-          ))
-        ) : (
-          <div>No categories found</div>
-        )}
+      <div>
+        <Table tHead={["S.No.", "Name", "Action"]} loading={loading}>
+          {categories.length > 0 ? (
+            categories.map((item, index) => (
+              <tr key={item._id}>
+                <td>{index + 1}</td>
+                <td>{item.name}</td>
+                <td className="flex gap-3 items-center">
+                  <Button
+                    size="sm"
+                    rounded="sm"
+                    onClick={() =>
+                      window.open(
+                        `${process.env.REACT_APP_BASE_VIDEO_URL}/${item.url}`,
+                        "_blank"
+                      )
+                    }
+                  >
+                    View
+                  </Button>
+                  <Button
+                    size="sm"
+                    rounded="sm"
+                    theme="red"
+                    onClick={() => deleteCategory(item._id)}
+                  >
+                    Remove
+                  </Button>
+                  <Button
+                    size="sm"
+                    rounded="sm"
+                    onClick={() =>
+                      navigate(
+                        `/manage-categories/${item._id}/add-bulk-questions`
+                      )
+                    }
+                  >
+                    Add Bulk Questions
+                  </Button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3" className="text-center">
+                No Categories Found
+              </td>
+            </tr>
+          )}
+        </Table>
       </div>
     </div>
   );
