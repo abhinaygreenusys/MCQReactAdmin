@@ -89,9 +89,9 @@ const AddQuestion = () => {
               required
             >
               <option value="">Select Category</option>
-              {categories.map((item, index) => (
-                <option key={index} value={item}>
-                  {item}
+              {categories.map((item) => (
+                <option key={item._id} value={item.name}>
+                  {item.name}
                 </option>
               ))}
             </select>
