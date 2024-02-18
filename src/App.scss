@@ -52,3 +52,7 @@ select:focus {
   outline: none;
   border: solid 2px colors.$blue;
 }
+
+dialog::backdrop {
+  background: red;
+}
