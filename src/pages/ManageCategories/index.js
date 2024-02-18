@@ -49,25 +49,41 @@ const ManageCategories = () => {
         </Link>
       </div>
       <div>
-        <Table tHead={["S.No.", "Name", "Action"]} loading={loading}>
+        <Table
+          tHead={["S.No.", "Name", "Video", "Questions", "Action"]}
+          loading={loading}
+        >
           {categories.length > 0 ? (
             categories.map((item, index) => (
               <tr key={item._id}>
                 <td>{index + 1}</td>
                 <td>{item.name}</td>
-                <td className="flex gap-3 items-center">
+                <td
+                  className="text-theme cursor-pointer"
+                  onClick={() =>
+                    window.open(
+                      `${process.env.REACT_APP_BASE_VIDEO_URL}/${item.url}`,
+                      "_blank"
+                    )
+                  }
+                >
+                  View
+                </td>
+                <td>
                   <Button
                     size="sm"
                     rounded="sm"
+                    theme="blue"
                     onClick={() =>
-                      window.open(
-                        `${process.env.REACT_APP_BASE_VIDEO_URL}/${item.url}`,
-                        "_blank"
+                      navigate(
+                        `/manage-categories/${item._id}/add-bulk-questions`
                       )
                     }
                   >
-                    View
+                    Add multiple
                   </Button>
+                </td>
+                <td>
                   <Button
                     size="sm"
                     rounded="sm"
@@ -75,17 +91,6 @@ const ManageCategories = () => {
                     onClick={() => deleteCategory(item._id)}
                   >
                     Remove
-                  </Button>
-                  <Button
-                    size="sm"
-                    rounded="sm"
-                    onClick={() =>
-                      navigate(
-                        `/manage-categories/${item._id}/add-bulk-questions`
-                      )
-                    }
-                  >
-                    Add Bulk Questions
                   </Button>
                 </td>
               </tr>

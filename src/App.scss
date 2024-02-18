@@ -50,7 +50,7 @@ select {
 input:focus,
 select:focus {
   outline: none;
-  border: solid 2px colors.$blue;
+  border: solid 2px colors.$theme;
 }
 
 dialog::backdrop {

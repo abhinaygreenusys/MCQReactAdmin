@@ -26,7 +26,7 @@
   transition: all 0.2s ease-in-out;
 }
 .sidebar .sidebar-item.active {
-  background: colors.$blue;
+  background: colors.$theme;
 }
 .sidebar .sidebar-item:not(.active):hover {
   background: colors.$grey;

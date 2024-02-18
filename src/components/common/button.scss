@@ -21,6 +21,14 @@
       background-color: colors.$red2;
     }
   }
+  &.btn-theme {
+    background-color: colors.$theme;
+    color: colors.$white;
+
+    &:hover {
+      background-color: colors.$red;
+    }
+  }
   &.btn-grey {
     background-color: colors.$lightgrey3;
     color: colors.$darkgrey;

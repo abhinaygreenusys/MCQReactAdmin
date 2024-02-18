@@ -78,7 +78,7 @@ const AddBulkQuestions = () => {
           >
             Cancel
           </Button>
-          <Button theme="blue" onClick={() => addBulkQuestions(true)}>
+          <Button theme="theme" onClick={() => addBulkQuestions(true)}>
             Upload
           </Button>
         </div>

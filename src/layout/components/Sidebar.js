@@ -3,9 +3,10 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import myToast from "../../components/utils/myToast";
 import PassContext from "../../components/utils/PassContext";
 import { IoIosPaper } from "react-icons/io";
-import { MdDashboard, MdLogout, MdCategory, MdShield } from "react-icons/md";
+import { MdDashboard, MdCategory, MdShield } from "react-icons/md";
 import { ImUsers } from "react-icons/im";
-import { PiExam } from "react-icons/pi";
+import { PiExamFill } from "react-icons/pi";
+import { RiFileList3Fill, RiLogoutBoxFill } from "react-icons/ri";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Sidebar = () => {
       link: "/",
     },
     {
-      icon: <MdCategory />,
+      icon: <RiFileList3Fill />,
       name: "Upload Instructions",
       link: "/upload-test-instructions",
     },
@@ -39,7 +40,7 @@ const Sidebar = () => {
       link: "/user-list",
     },
     {
-      icon: <PiExam />,
+      icon: <PiExamFill />,
       name: "Test List",
       link: "/test-list",
     },
@@ -68,8 +69,8 @@ const Sidebar = () => {
         {data.map((item, index) => (
           <li
             key={index}
-            className={`sidebar-item ${
-              active === index ? "active" : "cursor-pointer"
+            className={`sidebar-item cursor-pointer ${
+              active === index ? "active" : ""
             }`}
             onClick={() => {
               setActive(index);
@@ -89,7 +90,7 @@ const Sidebar = () => {
             navigate("/auth/login");
           }}
         >
-          <MdLogout />
+          <RiLogoutBoxFill />
           Logout
         </li>
       </ul>

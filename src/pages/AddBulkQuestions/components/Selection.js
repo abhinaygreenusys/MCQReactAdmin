@@ -17,7 +17,6 @@ const Selection = ({ setSection }) => {
       </div>
       <div className="flex gap-4">
         <Button
-          theme="blue"
           className="flex gap-1 items-center"
           onClick={() => {
             setSection("gSheet");
@@ -27,7 +26,6 @@ const Selection = ({ setSection }) => {
           Google Sheets File
         </Button>
         <Button
-          theme="blue"
           className="flex gap-1 items-center"
           onClick={() => {
             setSection("localFile");

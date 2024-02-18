@@ -52,7 +52,7 @@ const TestList = () => {
                 <td>{item.score}</td>
                 <td>{item.isCompleted ? "Completed" : "Not Completed"}</td>
                 <td
-                  className="cursor-pointer text-blue2 hover:underline"
+                  className="cursor-pointer text-theme hover:underline"
                   onClick={() => navigate(`./${item._id}`)}
                 >
                   view responses

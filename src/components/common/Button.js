@@ -6,7 +6,7 @@ const Button = ({
   id = "",
   disabled = false,
   onClick = () => {},
-  theme = "blue",
+  theme = "theme",
   size = "md",
   rounded = "md",
   type = "button",

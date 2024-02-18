@@ -78,7 +78,7 @@ const AddQuestion = () => {
           <div className="mb-4">
             <div className="mb-1 flex gap-2">
               <h5>Category</h5>
-              <Link to="/manage-categories" className="text-sm text-blue">
+              <Link to="/manage-categories" className="text-sm text-theme">
                 (Click here to add a new category)
               </Link>
             </div>
