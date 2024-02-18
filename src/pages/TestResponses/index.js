@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import { IoChevronBackCircleOutline } from "react-icons/io5";
 
 const TestResponses = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
@@ -44,7 +45,9 @@ const TestResponses = () => {
       <div className="flex justify-between items-center mb-8">
         <div>
           <div className="flex gap-4">
-            <IoChevronBackCircleOutline className="text-4xl" />
+            <IoChevronBackCircleOutline className="text-4xl cursor-pointer"
+              onClick={()=>navigate("/test-list")}
+            />
             <div>
               <h2>{testDetails.user}</h2>
               <p>
