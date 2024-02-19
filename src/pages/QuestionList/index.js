@@ -64,9 +64,9 @@ const QuestionList = () => {
   };
   return (
     <div>
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex justify-between items-center mb-8 flex-wrap gap-4">
         <h2>All Questions</h2>
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}

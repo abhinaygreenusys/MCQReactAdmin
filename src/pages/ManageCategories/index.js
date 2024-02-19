@@ -42,7 +42,7 @@ const ManageCategories = () => {
 
   return (
     <div>
-      <div className="mb-8 flex justify-between items-center">
+      <div className="mb-8 flex justify-between items-center gap-4 flex-wrap">
         <h2>Manage Categories</h2>
         <Link to="./add-category">
           <Button>Add Category</Button>
@@ -59,7 +59,7 @@ const ManageCategories = () => {
                 <td>{index + 1}</td>
                 <td>{item.name}</td>
                 <td
-                  className="text-theme cursor-pointer"
+                  className="text-theme cursor-pointer hover:underline"
                   onClick={() =>
                     window.open(
                       `${process.env.REACT_APP_BASE_VIDEO_URL}/${item.url}`,

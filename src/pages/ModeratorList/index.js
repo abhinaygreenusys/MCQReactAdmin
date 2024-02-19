@@ -54,13 +54,11 @@ const ModeratorList = () => {
                 <td>{index + 1}</td>
                 <td>{item.name}</td>
                 <td>{item.userId}</td>
-                <td>
-                  <span
-                    className="cursor-pointer"
-                    onClick={() => handleDelete(item._id)}
-                  >
-                    <RiDeleteBinLine />
-                  </span>
+                <td
+                  className="cursor-pointer flex gap-1 items-center hover:text-red"
+                  onClick={() => handleDelete(item._id)}
+                >
+                  <RiDeleteBinLine /> Remove
                 </td>
               </tr>
             ))

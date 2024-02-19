@@ -37,9 +37,9 @@ const TestList = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex justify-between items-center mb-8 gap-4 flex-wrap">
         <h2>All Tests</h2>
-        <div className="flex gap-8">
+        <div className="flex gap-x-8 flex-wrap gap-y-4">
           <div>
             <span className="font-medium">Sort By </span>
             <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>

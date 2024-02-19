@@ -47,7 +47,7 @@ const UploadTestInstructions = () => {
           <div className="mb-4">
             <h5 className="mb-1">Current Instruction Video</h5>
             <video
-              src="https://gyanvigyan.s3.ap-south-1.amazonaws.com/tutorial.mp4"
+              src="https://gyanvigyan.s3.ap-south-1.amazonaws.com/appTutorial/tutorial.mp4"
               controls
               className="w-96"
             ></video>

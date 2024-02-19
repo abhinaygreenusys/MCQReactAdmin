@@ -32,9 +32,9 @@ const UserList = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-wrap justify-between items-center mb-8 gap-4">
         <h2>All Users</h2>
-        <div className="flex gap-8">
+        <div className="flex flex-wrap gap-x-8 gap-y-4">
           <div>
             <span className="font-medium">Sort By </span>
             <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
