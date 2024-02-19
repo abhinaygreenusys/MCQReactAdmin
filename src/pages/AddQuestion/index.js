@@ -56,7 +56,14 @@ const AddQuestion = () => {
 
   return (
     <div>
-      <h2 className="mb-8">Add Question</h2>
+      <h2>Add Question</h2>
+      <p className="mb-8 text-darkgrey">
+        You can add multiple questions via spreadsheets via options in{" "}
+        <Link className="text-theme font-medium" to="/manage-categories">
+          Manage Categories
+        </Link>{" "}
+        page
+      </p>
       <div>
         <form
           onSubmit={(e) => {
@@ -76,12 +83,7 @@ const AddQuestion = () => {
             />
           </div>
           <div className="mb-4">
-            <div className="mb-1 flex gap-2">
-              <h5>Category</h5>
-              <Link to="/manage-categories" className="text-sm text-theme">
-                (Click here to add a new category)
-              </Link>
-            </div>
+            <h5 className="mb-1">Category</h5>
             <select
               className="w-full"
               value={category}
