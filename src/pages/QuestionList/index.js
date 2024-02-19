@@ -10,14 +10,34 @@ import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
 const QuestionList = () => {
   const navigate = useNavigate();
 
+  const [categories, setCategories] = useState([]);
+  const getCategories = async () => {
+    setLoading(true);
+    try {
+      const { data } = await api.get("/getCategories");
+      console.log(data);
+      setCategories(data.result);
+    } catch (err) {
+      console.log(err);
+      myToast(err?.response?.data?.error || "Something went wrong", "failure");
+    }
+    setLoading(false);
+  };
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const getQuestions = async () => {
     setLoading(true);
     try {
-      const { data } = await api.get(`/getQuestions?page=${page}`);
+      const { data } = await api.get(
+        `/getQuestions?page=${page}&filterBy=${categoryFilter}`
+      );
       console.log(data);
       setQuestions(data.result);
       setTotalPages(data.totalPages);
@@ -29,7 +49,7 @@ const QuestionList = () => {
   };
   useEffect(() => {
     getQuestions();
-  }, [page]);
+  }, [page, categoryFilter]);
 
   const handleDelete = async (id) => {
     try {
@@ -46,9 +66,22 @@ const QuestionList = () => {
     <div>
       <div className="flex justify-between items-center mb-8">
         <h2>All Questions</h2>
-        <Link to="./add-question">
-          <Button>Add Question</Button>
-        </Link>
+        <div className="flex gap-4">
+          <select
+            value={categoryFilter}
+            onChange={(e) => setCategoryFilter(e.target.value)}
+          >
+            <option value="">All Categories</option>
+            {categories.map((item) => (
+              <option value={item.name} key={item._id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+          <Link to="./add-question">
+            <Button>Add Question</Button>
+          </Link>
+        </div>
       </div>
       <div>
         <Table

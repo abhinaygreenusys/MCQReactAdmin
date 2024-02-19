@@ -6,13 +6,17 @@ import Pagination from "../../components/common/Pagination";
 
 const UserList = () => {
   const [loading, setLoading] = useState(true);
+  const [orderBy, setOrderBy] = useState("asc");
+  const [filterBy, setFilterBy] = useState("");
   const [users, setUsers] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const getUsers = async () => {
     setLoading(true);
     try {
-      const { data } = await api.get(`/getUsers?page=${page}`);
+      const { data } = await api.get(
+        `/getUsers?page=${page}&sortByDate=${orderBy}&filterByStatus=${filterBy}`
+      );
       console.log(data);
       setUsers(data.users);
       setTotalPages(data.totalPages);
@@ -24,10 +28,32 @@ const UserList = () => {
   };
   useEffect(() => {
     getUsers();
-  }, [page]);
+  }, [page, orderBy, filterBy]);
+
   return (
     <div>
-      <h2 className="mb-8">All Users</h2>
+      <div className="flex justify-between items-center mb-8">
+        <h2>All Users</h2>
+        <div className="flex gap-8">
+          <div>
+            <span className="font-medium">Sort By </span>
+            <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
+              <option value="asc">Date (↑)</option>
+              <option value="desc">Date (↓)</option>
+            </select>
+          </div>
+          <div>
+            <span className="font-medium">Filter By </span>
+            <select
+              value={filterBy}
+              onChange={(e) => setFilterBy(e.target.value)}
+            >
+              <option value={true}>Verified</option>
+              <option value={false}>Not Verified</option>
+            </select>
+          </div>
+        </div>
+      </div>
       <div>
         <Table
           tHead={["S.No.", "Name", "ID", "Email", "Status"]}

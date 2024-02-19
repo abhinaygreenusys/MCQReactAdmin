@@ -7,15 +7,21 @@ import Pagination from "../../components/common/Pagination";
 
 const TestList = () => {
   const navigate = useNavigate();
-  
+
   const [loading, setLoading] = useState(true);
+  const [sortBy, setSortBy] = useState("");
+  const [filterBy, setFilterBy] = useState("");
   const [tests, setTests] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const getTests = async () => {
     setLoading(true);
+    const order = sortBy.split("_")[0];
+    const sort = sortBy.split("_")[1];
     try {
-      const { data } = await api.get(`/tests?page=${page}`);
+      const { data } = await api.get(
+        `/tests?page=${page}&sortBy=${sort}&orderBy=${order}&filterByCompletion=${filterBy}`
+      );
       console.log(data);
       setTests(data.result);
       setTotalPages(data.totalPages);
@@ -27,10 +33,34 @@ const TestList = () => {
   };
   useEffect(() => {
     getTests();
-  }, []);
+  }, [page, sortBy, filterBy]);
+
   return (
     <div>
-      <h2 className="mb-8">All Tests</h2>
+      <div className="flex justify-between items-center mb-8">
+        <h2>All Tests</h2>
+        <div className="flex gap-8">
+          <div>
+            <span className="font-medium">Sort By </span>
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+              <option value="asc_score">Scores (↑)</option>
+              <option value="desc_score">Scores (↓)</option>
+              <option value="asc_createdAt">Date (↑)</option>
+              <option value="desc_createdAt">Date (↓)</option>
+            </select>
+          </div>
+          <div>
+            <span className="font-medium">Filter By </span>
+            <select
+              value={filterBy}
+              onChange={(e) => setFilterBy(e.target.value)}
+            >
+              <option value={true}>Completed</option>
+              <option value={false}>Not Completed</option>
+            </select>
+          </div>
+        </div>
+      </div>
       <div>
         <Table
           tHead={[
