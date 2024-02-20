@@ -62,7 +62,7 @@ const UserList = () => {
           {users.length > 0 ? (
             users.map((item, index) => (
               <tr key={item._id}>
-                <td>{index + 1}</td>
+                <td>{(page - 1) * 20 + index + 1}</td>
                 <td>{item.name}</td>
                 <td>{item.employeeId}</td>
                 <td>{item.email}</td>

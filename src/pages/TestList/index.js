@@ -76,7 +76,7 @@ const TestList = () => {
           {tests.length > 0 ? (
             tests.map((item, index) => (
               <tr key={item._id}>
-                <td>{index + 1}</td>
+                <td>{(page - 1) * 20 + index + 1}</td>
                 <td>{item?.user?.name}</td>
                 <td>{item.questions.length}</td>
                 <td>{item.score}</td>

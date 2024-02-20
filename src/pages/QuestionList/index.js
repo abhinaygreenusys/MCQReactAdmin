@@ -91,7 +91,7 @@ const QuestionList = () => {
           {questions.length > 0 ? (
             questions.map((item, index) => (
               <tr key={item._id}>
-                <td>{index + 1}</td>
+                <td>{(page - 1) * 20 + index + 1}</td>
                 <td>{item.category}</td>
                 <td>{item.question}</td>
                 <td>
