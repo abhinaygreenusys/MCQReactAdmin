@@ -105,8 +105,8 @@ const UpdateQuestion = () => {
             >
               <option value="">Select Category</option>
               {categories.map((item, index) => (
-                <option key={index} value={item}>
-                  {item}
+                <option key={index} value={item.name}>
+                  {item.name}
                 </option>
               ))}
             </select>
