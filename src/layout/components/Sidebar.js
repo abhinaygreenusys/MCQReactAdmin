@@ -58,7 +58,7 @@ const Sidebar = () => {
   }, [location.pathname]);
   return (
     <div className="sidebar">
-      <div className="px-6 py-5">
+      <div className="px-6 pt-5 pb-8">
         <Link to="/" className="flex gap-2 items-center">
           <img src="/app_logo.png" alt="logo" className="h-12 w-12" />
           <span className="font-semibold">Admin Panel</span>
