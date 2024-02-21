@@ -40,7 +40,7 @@ const Dashboard = () => {
     <div>
       <h2 className="mb-8">Dashboard</h2>
       <div>
-        {!loading ? (
+        {loading ? (
           <div className="flex items-center gap-2">
             <AiOutlineLoading className="animate animate-spin text-theme text-2xl" />
             Loading...
