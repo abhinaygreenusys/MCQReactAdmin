@@ -9,8 +9,8 @@ const TestList = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
-  const [sortBy, setSortBy] = useState("");
-  const [filterBy, setFilterBy] = useState("");
+  const [sortBy, setSortBy] = useState("desc_createdAt");
+  const [filterBy, setFilterBy] = useState(true);
   const [tests, setTests] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
@@ -43,10 +43,10 @@ const TestList = () => {
           <div>
             <span className="font-medium">Sort By </span>
             <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-              <option value="asc_score">Scores (↑)</option>
-              <option value="desc_score">Scores (↓)</option>
-              <option value="asc_createdAt">Date (↑)</option>
               <option value="desc_createdAt">Date (↓)</option>
+              <option value="asc_createdAt">Date (↑)</option>
+              <option value="desc_score">Scores (↓)</option>
+              <option value="asc_score">Scores (↑)</option>
             </select>
           </div>
           <div>

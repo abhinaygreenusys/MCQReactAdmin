@@ -7,7 +7,7 @@ import Pagination from "../../components/common/Pagination";
 const UserList = () => {
   const [loading, setLoading] = useState(true);
   const [orderBy, setOrderBy] = useState("asc");
-  const [filterBy, setFilterBy] = useState("");
+  const [filterBy, setFilterBy] = useState(true);
   const [users, setUsers] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
