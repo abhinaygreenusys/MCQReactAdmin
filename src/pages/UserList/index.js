@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../../components/utils/api";
+import dateFormatter from "../../components/utils/dateFormatter";
 import myToast from "../../components/utils/myToast";
 import Table from "../../components/common/Table";
 import Pagination from "../../components/common/Pagination";
@@ -37,7 +38,10 @@ const UserList = () => {
         <div className="flex flex-wrap gap-x-8 gap-y-4">
           <div>
             <span className="font-medium">Sort By </span>
-            <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
+            <select
+              value={orderBy}
+              onChange={(e) => setOrderBy(e.target.value)}
+            >
               <option value="asc">Date (↑)</option>
               <option value="desc">Date (↓)</option>
             </select>
@@ -56,7 +60,7 @@ const UserList = () => {
       </div>
       <div>
         <Table
-          tHead={["S.No.", "Name", "ID", "Email", "Status"]}
+          tHead={["S.No.", "Name", "ID", "Email", "Date", "Status"]}
           loading={loading}
         >
           {users.length > 0 ? (
@@ -66,6 +70,7 @@ const UserList = () => {
                 <td>{item.name}</td>
                 <td>{item.employeeId}</td>
                 <td>{item.email}</td>
+                <td>{dateFormatter(item.createdAt)}</td>
                 <td>{item.isVerified ? "Verified" : "Not Verified"}</td>
               </tr>
             ))

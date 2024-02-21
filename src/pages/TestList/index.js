@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../components/utils/api";
+import dateFormatter from "../../components/utils/dateFormatter";
 import myToast from "../../components/utils/myToast";
 import Table from "../../components/common/Table";
 import Pagination from "../../components/common/Pagination";
@@ -68,6 +69,7 @@ const TestList = () => {
             "Name",
             "No. of Ques.",
             "Score",
+            "Date",
             "Completion",
             "Action",
           ]}
@@ -80,6 +82,7 @@ const TestList = () => {
                 <td>{item?.user?.name}</td>
                 <td>{item.questions.length}</td>
                 <td>{item.score}</td>
+                <td>{dateFormatter(item.createdAt)}</td>
                 <td>{item.isCompleted ? "Completed" : "Not Completed"}</td>
                 <td
                   className="cursor-pointer text-theme hover:underline"
