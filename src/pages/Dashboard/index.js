@@ -5,6 +5,7 @@ import Card from "../../components/common/Card";
 import UsersChart from "./components/UsersChart";
 import TestsChart from "./components/TestsChart";
 import QuestionCategoryChart from "./components/QuestionCategoryChart";
+import { AiOutlineLoading } from "react-icons/ai";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -30,25 +31,28 @@ const Dashboard = () => {
   }, []);
 
   const changeCamelCaseToNormal = (str) => {
-    return str
-      .replace(/([A-Z])/g, " $1")
-      .replace(/^./, function (str) {
-        return str.toUpperCase();
-      });
+    return str.replace(/([A-Z])/g, " $1").replace(/^./, function (str) {
+      return str.toUpperCase();
+    });
   };
 
   return (
     <div>
       <h2 className="mb-8">Dashboard</h2>
       <div>
-        {loading ? (
-          <div>Loading...</div>
+        {!loading ? (
+          <div className="flex items-center gap-2">
+            <AiOutlineLoading className="animate animate-spin text-theme text-2xl" />
+            Loading...
+          </div>
         ) : (
           <>
             <div className="flex gap-x-8 gap-y-4 flex-wrap">
               {Object.keys(dashboardData).map((key) => (
                 <Card key={key} className="bg-white w-[13rem]">
-                  <h5 className="capitalize mb-2">{changeCamelCaseToNormal(key)}</h5>
+                  <h5 className="capitalize mb-2">
+                    {changeCamelCaseToNormal(key)}
+                  </h5>
                   <h3 className="text-center">{dashboardData[key]}</h3>
                 </Card>
               ))}
