@@ -4,6 +4,7 @@ import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
 import Table from "../../components/common/Table";
+import { MdOutlineQrCodeScanner } from "react-icons/md";
 
 const ManageCategories = () => {
   const navigate = useNavigate();
@@ -57,7 +58,17 @@ const ManageCategories = () => {
             categories.map((item, index) => (
               <tr key={item._id}>
                 <td>{index + 1}</td>
-                <td>{item.name}</td>
+                <td
+                  className="flex gap-2 items-center cursor-pointer"
+                  onClick={() =>
+                    navigate(`/manage-categories/${item._id}/qr-code`)
+                  }
+                >
+                  <span>{item.name}</span>
+                  <span className="text-theme text-2xl">
+                    <MdOutlineQrCodeScanner />
+                  </span>
+                </td>
                 <td
                   className="text-theme cursor-pointer hover:underline"
                   onClick={() =>
