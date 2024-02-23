@@ -17,8 +17,8 @@ import AddQuestion from "./pages/AddQuestion";
 import AddBulkQuestions from "./pages/AddBulkQuestions";
 import UpdateQuestion from "./pages/UpdateQuestion";
 import UserList from "./pages/UserList";
-import ModeratorList from "./pages/ModeratorList";
-import AddModerator from "./pages/AddModerator";
+// import ModeratorList from "./pages/ModeratorList";
+// import AddModerator from "./pages/AddModerator";
 import TestList from "./pages/TestList";
 import TestResponses from "./pages/TestResponses";
 import UploadTestInstructions from "./pages/UploadTestInstructions";
@@ -80,14 +80,14 @@ const routes = createBrowserRouter([
             path: "/test-list/:id",
             element: <TestResponses />,
           },
-          {
-            path: "/moderator-list",
-            element: <ModeratorList />,
-          },
-          {
-            path: "/moderator-list/add-moderator",
-            element: <AddModerator />,
-          },
+          // {
+          //   path: "/moderator-list",
+          //   element: <ModeratorList />,
+          // },
+          // {
+          //   path: "/moderator-list/add-moderator",
+          //   element: <AddModerator />,
+          // },
         ],
       },
     ],

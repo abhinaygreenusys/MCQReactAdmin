@@ -44,11 +44,11 @@ const Sidebar = () => {
       name: "Test List",
       link: "/test-list",
     },
-    {
-      icon: <MdShield />,
-      name: "Moderators",
-      link: "/moderator-list",
-    },
+    // {
+    //   icon: <MdShield />,
+    //   name: "Moderators",
+    //   link: "/moderator-list",
+    // },
   ];
   const [active, setActive] = useState(0);
   useEffect(() => {
