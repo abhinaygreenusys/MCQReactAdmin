@@ -21,6 +21,7 @@ const TestResponses = () => {
         user: data.user,
         score: data.score,
         isCompleted: data.isCompleted,
+        category: data?.category?.name,
       });
     } catch (err) {
       console.log(err);
@@ -45,11 +46,16 @@ const TestResponses = () => {
       <div className="flex justify-between items-center mb-8">
         <div>
           <div className="flex gap-4">
-            <IoChevronBackCircleOutline className="text-4xl cursor-pointer"
-              onClick={()=>navigate("/test-list")}
+            <IoChevronBackCircleOutline
+              className="text-4xl cursor-pointer"
+              onClick={() => navigate("/test-list")}
             />
             <div>
               <h2>{testDetails.user}</h2>
+              <p>
+                <span className="font-medium">Category:</span>{" "}
+                {testDetails.category}
+              </p>
               <p>
                 <span className="font-medium">Score:</span> {testDetails.score}
               </p>

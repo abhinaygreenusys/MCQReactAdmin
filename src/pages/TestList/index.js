@@ -67,6 +67,7 @@ const TestList = () => {
           tHead={[
             "S.No.",
             "Name",
+            "Category",
             "No. of Ques.",
             "Score",
             "Date",
@@ -80,7 +81,8 @@ const TestList = () => {
               <tr key={item._id}>
                 <td>{(page - 1) * 20 + index + 1}</td>
                 <td>{item?.user?.name}</td>
-                <td>{item.questions.length}</td>
+                <td>{item?.category?.name}</td>
+                <td>{item?.questions?.length}</td>
                 <td>{item.score}</td>
                 <td>{dateFormatter(item.createdAt)}</td>
                 <td>{item.isCompleted ? "Completed" : "Not Completed"}</td>
@@ -94,7 +96,7 @@ const TestList = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="7" className="text-center">
+              <td colSpan="8" className="text-center">
                 No Users Found
               </td>
             </tr>
