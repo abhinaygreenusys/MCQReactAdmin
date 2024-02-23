@@ -4,7 +4,11 @@ import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
 import Table from "../../components/common/Table";
-import { MdOutlineQrCodeScanner } from "react-icons/md";
+import {
+  MdOutlineQrCodeScanner,
+  MdDeleteOutline,
+  MdEdit,
+} from "react-icons/md";
 
 const ManageCategories = () => {
   const navigate = useNavigate();
@@ -59,15 +63,17 @@ const ManageCategories = () => {
               <tr key={item._id}>
                 <td>{index + 1}</td>
                 <td
-                  className="flex gap-2 items-center cursor-pointer"
+                  className="cursor-pointer"
                   onClick={() =>
                     navigate(`/manage-categories/${item._id}/qr-code`)
                   }
                 >
-                  <span>{item.name}</span>
-                  <span className="text-theme text-2xl">
-                    <MdOutlineQrCodeScanner />
-                  </span>
+                  <div className="flex gap-2 items-start">
+                    <span>{item.name}</span>
+                    <span className="text-theme text-2xl">
+                      <MdOutlineQrCodeScanner />
+                    </span>
+                  </div>
                 </td>
                 <td
                   className="text-theme cursor-pointer hover:underline"
@@ -94,15 +100,19 @@ const ManageCategories = () => {
                     Add multiple
                   </Button>
                 </td>
-                <td>
-                  <Button
-                    size="sm"
-                    rounded="sm"
-                    theme="red"
+                <td className="flex gap-2">
+                  <span
+                    className="p-2 cursor-pointer text-xl hover:text-theme"
                     onClick={() => deleteCategory(item._id)}
                   >
-                    Remove
-                  </Button>
+                    <MdDeleteOutline />
+                  </span>
+                  <span
+                    className="p-2 cursor-pointer text-xl hover:text-theme"
+                    onClick={() => navigate(`./${item._id}/update-category`)}
+                  >
+                    <MdEdit />
+                  </span>
                 </td>
               </tr>
             ))

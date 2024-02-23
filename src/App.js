@@ -12,6 +12,7 @@ import Layout from "./layout";
 import Dashboard from "./pages/Dashboard";
 import ManageCategories from "./pages/ManageCategories";
 import AddCategory from "./pages/AddCategory";
+import UpdateCategory from "./pages/UpdateCategory";
 import CategoryQRCode from "./pages/CategoryQRCode";
 import QuestionList from "./pages/QuestionList";
 import AddQuestion from "./pages/AddQuestion";
@@ -50,6 +51,10 @@ const routes = createBrowserRouter([
           {
             path: "/manage-categories/add-category",
             element: <AddCategory />,
+          },
+          {
+            path: "/manage-categories/:id/update-category",
+            element: <UpdateCategory />,
           },
           {
             path: "/manage-categories/:id/add-bulk-questions",

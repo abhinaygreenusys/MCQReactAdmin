@@ -1,15 +1,31 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
 import FilesDragAndDrop from "../../components/common/FilesDragAndDrop";
 import { TbLoader2 } from "react-icons/tb";
 
-const AddCategory = () => {
+const UpdateCategory = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const [newCategoryName, setNewCategoryName] = useState("");
+  const [categoryName, setCategoryName] = useState("");
+
+  const getCategory = async () => {
+    try {
+      const { data } = await api.get("/getCategory/" + id);
+      console.log(data);
+      setCategoryName(data.result.name);
+    } catch (err) {
+      console.log(err);
+      myToast(err?.response?.data?.error || "Something went wrong", "failure");
+    }
+  };
+  useEffect(() => {
+    getCategory();
+  }, []);
+
   const [filename, setFilename] = useState("");
   // for file upload task
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -19,15 +35,14 @@ const AddCategory = () => {
     setFilename(files.map((file) => file.name).join(", "));
   };
   const [loading, setLoading] = useState(false);
-  const addCategory = async () => {
+  const updateCategory = async () => {
     setLoading(true);
     try {
       const formData = new FormData();
-      formData.append("name", newCategoryName);
       for (let i = 0; i < selectedFiles.length; i++) {
         formData.append("url", selectedFiles[i]);
       }
-      const { data } = await api.post("/addCategory", formData, {
+      const { data } = await api.patch("/updateCategory/" + id, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -44,12 +59,12 @@ const AddCategory = () => {
   return (
     <section>
       <div className="mb-8">
-        <h2>Add a new Category</h2>
+        <h2>Update Category</h2>
       </div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addCategory();
+          updateCategory();
         }}
       >
         <div className="mb-4">
@@ -58,12 +73,12 @@ const AddCategory = () => {
             type="text"
             className="w-full"
             placeholder="Enter category name"
-            value={newCategoryName}
-            onChange={(e) => setNewCategoryName(e.target.value)}
+            value={categoryName}
+            disabled
           />
         </div>
         <div className="mb-4">
-          <div className="mb-1">Category Assets</div>
+          <div className="mb-1">Add New Category Assets</div>
           <FilesDragAndDrop
             count={999}
             formats={[
@@ -87,7 +102,7 @@ const AddCategory = () => {
             disabled={loading}
           >
             {loading && <TbLoader2 className="animate-spin" />}
-            Add Category
+            Update Category
           </Button>
         </div>
       </form>
@@ -95,4 +110,4 @@ const AddCategory = () => {
   );
 };
 
-export default AddCategory;
+export default UpdateCategory;
