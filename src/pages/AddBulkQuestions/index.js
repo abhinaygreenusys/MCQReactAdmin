@@ -19,12 +19,22 @@ const AddBulkQuestions = () => {
       myToast("Please enter atleast 1 question", "failure");
       return;
     }
+    const fixedQuestions = structuredData.map((question) => {
+      return {
+        ...question,
+        option1: question?.option1?.toString() || "",
+        option2: question?.option2?.toString() || "",
+        option3: question?.option3?.toString() || "",
+        option4: question?.option4?.toString() || "",
+        answer: question?.answer?.toString() || "",
+      };
+    });
     try {
       const { data } = await api.post(
         `/uploadBulkQuestions?uploadValidFlag=${flag}`,
         {
           categoryId: id,
-          questions: structuredData,
+          questions: fixedQuestions,
         }
       );
       console.log(data);
@@ -64,7 +74,8 @@ const AddBulkQuestions = () => {
       <dialog
         ref={dialogRef}
         style={{
-          boxShadow: "rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px"
+          boxShadow:
+            "rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
         }}
         className="bg-white p-4 rounded absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
       >
@@ -72,10 +83,7 @@ const AddBulkQuestions = () => {
         <p className="text-red">{errorBulk}</p>
         <p className="my-4">Upload remaining questions?</p>
         <div className="flex justify-end items-center gap-4">
-          <Button
-            theme="grey"
-            onClick={() => dialogRef.current.close()}
-          >
+          <Button theme="grey" onClick={() => dialogRef.current.close()}>
             Cancel
           </Button>
           <Button theme="theme" onClick={() => addBulkQuestions(true)}>
