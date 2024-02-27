@@ -55,7 +55,7 @@ const ManageCategories = () => {
       </div>
       <div>
         <Table
-          tHead={["S.No.", "Name", "Video", "Questions", "Action"]}
+          tHead={["S.No.", "Name", "Assets", "Questions", "Action"]}
           loading={loading}
         >
           {categories.length > 0 ? (
@@ -78,13 +78,10 @@ const ManageCategories = () => {
                 <td
                   className="text-theme cursor-pointer hover:underline"
                   onClick={() =>
-                    window.open(
-                      `${process.env.REACT_APP_BASE_VIDEO_URL}/${item.url}`,
-                      "_blank"
-                    )
+                    navigate(`/manage-categories/${item._id}/assets`)
                   }
                 >
-                  View
+                  Manage ({item.urls.length})
                 </td>
                 <td>
                   <Button
