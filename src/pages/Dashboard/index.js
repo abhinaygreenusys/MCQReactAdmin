@@ -6,11 +6,13 @@ import UsersChart from "./components/UsersChart";
 import TestsChart from "./components/TestsChart";
 import QuestionCategoryChart from "./components/QuestionCategoryChart";
 import { AiOutlineLoading } from "react-icons/ai";
+import TestsPerCategoryChart from "./components/TestsPerCategoryChart";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [dashboardData, setDashboardData] = useState({});
   const [questionsPerCategory, setQuestionsPerCategory] = useState([]);
+  const [testsPerCategory, setTestsPerCategory] = useState([]);
 
   const getDashboardData = async () => {
     setLoading(true);
@@ -18,7 +20,9 @@ const Dashboard = () => {
       const { data } = await api.get("/dashboard");
       console.log(data);
       setQuestionsPerCategory(data.categoriesWithQuestions);
+      setTestsPerCategory(data.categoriesWithTests);
       delete data.categoriesWithQuestions;
+      delete data.categoriesWithTests;
       setDashboardData(data);
     } catch (err) {
       console.log(err);
@@ -89,6 +93,12 @@ const Dashboard = () => {
               <Card size="graph" className="bg-white h-[20rem] w-full">
                 <div className="font-medium mb-6">Questions per Category</div>
                 <QuestionCategoryChart data={questionsPerCategory} />
+              </Card>
+            </div>
+            <div className="mt-10">
+              <Card size="graph" className="bg-white h-[20rem] w-full">
+                <div className="font-medium mb-6">Tests per Category</div>
+                <TestsPerCategoryChart data={testsPerCategory} />
               </Card>
             </div>
           </>
