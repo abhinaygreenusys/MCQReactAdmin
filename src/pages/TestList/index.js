@@ -85,9 +85,9 @@ const TestList = () => {
                 <td>{item?.questions?.length}</td>
                 <td>{item.score}</td>
                 <td>{dateFormatter(item.createdAt)}</td>
-                <td>{item.isCompleted ? "Completed" : "Not Completed"}</td>
+                <td>{item.isCompleted ? "Completed" : "Incomplete"}</td>
                 <td
-                  className="cursor-pointer text-theme hover:underline"
+                  className="cursor-pointer text-theme hover:underline text-sm"
                   onClick={() => navigate(`./${item._id}`)}
                 >
                   view responses

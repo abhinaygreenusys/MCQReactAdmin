@@ -130,20 +130,22 @@ const QuestionList = () => {
                   </ul>
                 </td>
                 <td>
-                  <div className="flex gap-x-2">
-                    <span
-                      className="cursor-pointer p-4"
+                  <ul>
+                    <li
+                      className="cursor-pointer p-4 hover:text-theme flex gap-1 items-center"
                       onClick={() => navigate(`./update-question/${item._id}`)}
                     >
-                      <RiEdit2Line />
-                    </span>
-                    <span
-                      className="cursor-pointer p-4"
+                      <RiEdit2Line className="text-xl" />
+                      <span className="text-sm">Edit</span>
+                    </li>
+                    <li
+                      className="cursor-pointer p-4 hover:text-theme flex gap-1 items-center"
                       onClick={() => handleDelete(item._id)}
                     >
-                      <RiDeleteBinLine />
-                    </span>
-                  </div>
+                      <RiDeleteBinLine className="text-xl" />
+                      <span className="text-sm">Remove</span>
+                    </li>
+                  </ul>
                 </td>
               </tr>
             ))
