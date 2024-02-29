@@ -69,7 +69,10 @@ const QuestionList = () => {
         <div className="flex gap-4 flex-wrap">
           <select
             value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value)}
+            onChange={(e) => {
+              setCategoryFilter(e.target.value);
+              setPage(1);
+            }}
           >
             <option value="">All Categories</option>
             {categories.map((item) => (
