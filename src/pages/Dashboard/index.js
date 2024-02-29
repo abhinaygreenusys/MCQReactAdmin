@@ -83,7 +83,7 @@ const Dashboard = () => {
                       name: "Tests",
                       total: dashboardData.tests || 0,
                       completed: dashboardData.completedTests || 0,
-                      uncompleted: dashboardData.incompleteTests || 0,
+                      incomplete: dashboardData.incompleteTests || 0,
                     },
                   ]}
                 />
