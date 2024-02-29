@@ -21,7 +21,7 @@ import {
           <Legend />
           <Bar dataKey="total" fill="#4071b8" />
           <Bar dataKey="completed" fill="#56c568" />
-          <Bar dataKey="uncompleted" fill="#f44336" />
+          <Bar dataKey="incomplete" fill="#f44336" />
         </BarChart>
       </ResponsiveContainer>
     );
