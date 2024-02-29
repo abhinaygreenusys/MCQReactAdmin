@@ -97,7 +97,7 @@ const TestList = () => {
           ) : (
             <tr>
               <td colSpan="8" className="text-center">
-                No Users Found
+                No Tests Found
               </td>
             </tr>
           )}
