@@ -5,18 +5,22 @@ import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
 import FilesDragAndDrop from "../../components/common/FilesDragAndDrop";
 import { TbLoader2 } from "react-icons/tb";
+import { MdDeleteOutline } from "react-icons/md";
+import { AiOutlineLink } from "react-icons/ai";
 
 const UpdateCategory = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
   const [categoryName, setCategoryName] = useState("");
+  const [categoryUrls, setCategoryUrls] = useState([]);
 
   const getCategory = async () => {
     try {
       const { data } = await api.get("/getCategory/" + id);
       console.log(data);
       setCategoryName(data.result.name);
+      setCategoryUrls(data.result.urls);
     } catch (err) {
       console.log(err);
       myToast(err?.response?.data?.error || "Something went wrong", "failure");
@@ -25,6 +29,18 @@ const UpdateCategory = () => {
   useEffect(() => {
     getCategory();
   }, []);
+
+  const handleDelete = async (url) => {
+    try {
+      const { data } = await api.patch("/deleteCategoryUrl/" + id, { url });
+      console.log(data);
+      setCategoryUrls(categoryUrls.filter((item) => item !== url));
+      myToast(data.message, "success");
+    } catch (err) {
+      console.log(err);
+      myToast(err?.response?.data?.error || "Something went wrong", "failure");
+    }
+  };
 
   const [filename, setFilename] = useState("");
   // for file upload task
@@ -56,6 +72,7 @@ const UpdateCategory = () => {
     }
     setLoading(false);
   };
+
   return (
     <section>
       <div className="mb-8">
@@ -76,6 +93,37 @@ const UpdateCategory = () => {
             value={categoryName}
             disabled
           />
+        </div>
+        <div className="mb-4">
+          <div className="mb-1">Current assets</div>
+          <div className="my-4">
+            {categoryUrls.length > 0 ? (
+              categoryUrls.map((item) => (
+                <div
+                  className="flex justify-between items-center mb-2 bg-lightgrey px-4 rounded-sm"
+                  key={item}
+                >
+                  <a
+                    href={`${process.env.REACT_APP_BASE_VIDEO_URL}/${item}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-theme flex items-center gap-2"
+                  >
+                    <AiOutlineLink />
+                    {item}
+                  </a>
+                  <span
+                    className="p-2 pr-0 cursor-pointer"
+                    onClick={() => handleDelete(item)}
+                  >
+                    <MdDeleteOutline />
+                  </span>
+                </div>
+              ))
+            ) : (
+              <p>No assets found</p>
+            )}
+          </div>
         </div>
         <div className="mb-4">
           <div className="mb-1">Add New Category Assets</div>

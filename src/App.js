@@ -22,7 +22,6 @@ import UserList from "./pages/UserList";
 import TestList from "./pages/TestList";
 import TestResponses from "./pages/TestResponses";
 import UploadTestInstructions from "./pages/UploadTestInstructions";
-import CategoryAssets from "./pages/ManageCategoryAssets";
 
 const routes = createBrowserRouter([
   {
@@ -56,10 +55,6 @@ const routes = createBrowserRouter([
           {
             path: "/manage-categories/:id/update-category",
             element: <UpdateCategory />,
-          },
-          {
-            path: "/manage-categories/:id/assets",
-            element: <CategoryAssets />,
           },
           {
             path: "/manage-categories/:id/add-bulk-questions",

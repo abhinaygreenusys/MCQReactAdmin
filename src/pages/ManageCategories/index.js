@@ -4,11 +4,8 @@ import api from "../../components/utils/api";
 import myToast from "../../components/utils/myToast";
 import Button from "../../components/common/Button";
 import Table from "../../components/common/Table";
-import {
-  MdOutlineQrCodeScanner,
-  MdDeleteOutline,
-  MdEdit,
-} from "react-icons/md";
+import { MdOutlineQrCodeScanner } from "react-icons/md";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 const ManageCategories = () => {
   const navigate = useNavigate();
@@ -55,31 +52,18 @@ const ManageCategories = () => {
       </div>
       <div>
         <Table
-          tHead={["S.No.", "Name", "Assets", "Questions", "Action"]}
+          tHead={["S.No.", "Name", "Assets", "Questions", "QR", "Action"]}
           loading={loading}
         >
           {categories.length > 0 ? (
             categories.map((item, index) => (
               <tr key={item._id}>
                 <td>{index + 1}</td>
+                <td>{item.name}</td>
+
                 <td
-                  className="cursor-pointer"
-                  onClick={() =>
-                    navigate(`/manage-categories/${item._id}/qr-code`)
-                  }
-                >
-                  <div className="flex gap-2 items-start">
-                    <span>{item.name}</span>
-                    <span className="text-theme text-2xl">
-                      <MdOutlineQrCodeScanner />
-                    </span>
-                  </div>
-                </td>
-                <td
-                  className="text-theme cursor-pointer hover:underline"
-                  onClick={() =>
-                    navigate(`/manage-categories/${item._id}/assets`)
-                  }
+                  className="text-theme cursor-pointer hover:underline text-sm"
+                  onClick={() => navigate(`./${item._id}/update-category`)}
                 >
                   Manage ({item.urls.length})
                 </td>
@@ -97,18 +81,26 @@ const ManageCategories = () => {
                     Add multiple
                   </Button>
                 </td>
-                <td className="flex gap-2">
+                <td
+                  className="cursor-pointer hover:text-theme"
+                  onClick={() =>
+                    navigate(`/manage-categories/${item._id}/qr-code`)
+                  }
+                >
+                  <div className="flex gap-1 items-center">
+                    <span className="text-2xl">
+                      <MdOutlineQrCodeScanner />
+                    </span>
+                    <span className="text-sm">Generate</span>
+                  </div>
+                </td>
+                <td className="p-2 cursor-pointer hover:text-theme">
                   <span
-                    className="p-2 cursor-pointer text-xl hover:text-theme"
                     onClick={() => deleteCategory(item._id)}
+                    className="flex gap-1 items-center"
                   >
-                    <MdDeleteOutline />
-                  </span>
-                  <span
-                    className="p-2 cursor-pointer text-xl hover:text-theme"
-                    onClick={() => navigate(`./${item._id}/update-category`)}
-                  >
-                    <MdEdit />
+                    <RiDeleteBinLine className="text-xl" />
+                    <span className="text-sm">Remove</span>
                   </span>
                 </td>
               </tr>
