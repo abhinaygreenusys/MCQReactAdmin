@@ -138,6 +138,7 @@ const UpdateCategory = () => {
               "docx",
               "pptx",
               "mp3",
+              "txt"
             ]}
             filename={filename}
             onUpload={onUpload}
